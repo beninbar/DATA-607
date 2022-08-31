@@ -1,0 +1,52 @@
+---
+title: "Assignment 1"
+subtitle: "Benjamin Inbar"
+output: html_document
+date: "August 31, 2022"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Pulling in Covid approval polling data.
+
+This [data](https://github.com/fivethirtyeight/covid-19-polls) piqued my interest as it collated poll data and allows us to directly compare Trump vs. Biden's handling of the Coronavirus pandemic.
+
+First, let's read in the data from Github, and check that all is in order, since this is my first time using R!
+```{r}
+data <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_polls.csv")
+class(data)
+head(data)
+```
+
+</div><div style="margin-top:50px;">
+#### Great. Let's check column names only.
+This might give us an idea of which we want to select for further transformation.
+```{r}
+colnames(data)
+```
+
+</div><div style="margin-top:50px;">
+#### Let's say we want to run some predictive analytics. 
+Let's subset or grab relevant columns to that end. Note that _**subject**_ would be our target or independent variable.
+
+```{r}
+trimmed <- subset(data, select=c(pollster, sample_size, population, party, subject, approve, disapprove))
+head(trimmed)
+```
+
+</div><div style="margin-top:50px;">
+#### A small transformation.
+Make data values easier to understand for the 'population' variable.
+
+```{r}
+trimmed['population'][trimmed['population'] == 'a'] <- 'adult'
+trimmed['population'][trimmed['population'] == 'rv'] <- 'registered voter'
+trimmed['population'][trimmed['population'] == 'lv'] <- 'likely voter'
+trimmed[1:20, 'population']
+```
+
+</div><div style="margin-top:50px;">
+#### Future directions.
+This was fun, but there are plenty of ways we could delve in, particularly if we are trying to build a predictive model. The first thing I'd do is run a correlation matrix on the selected variables.
