@@ -49,6 +49,7 @@ class(fruits3)
 # Removed digits here. I attempted earlier in the code but failed. Would have liked to use RegEx to remove the digits sooner.
 fruits4 <- fruits3[! fruits3 %in% c(0:9999)]
 fruits4
+dput(fruits4)
 
 #3 Describe, in words, what these expressions will match:
 # (.)\1\1                 -----> The (.) will match any character and group it via parentheses, but since no parameters are specified around it, it will just return any (or in R, the first) character in the target string. Then the '\1\1' would indicate recalling the match result from that singular group, two times. Thus in our example it attempts to match "TTT," or "eee," which are not in our string. Note the lack of parentheses so add them and add the escape \.

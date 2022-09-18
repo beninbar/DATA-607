@@ -74,9 +74,9 @@ class(fruits3)
 
 </div><div style="margin-top:50px;">
 I removed the digits here. I attempted this earlier in the code with RegEx, but failed. This works for now.
-```{r}
+```{r, results='asis'}
 fruits4 <- fruits3[! fruits3 %in% c(0:9999)]
-fruits4
+dput(fruits4)
 ```
 
 </div><div style="margin-top:50px;">

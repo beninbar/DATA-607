@@ -452,10 +452,10 @@ is.vector(fruits3)</code></pre>
 <p>I removed the digits here. I attempted this earlier in the code with
 RegEx, but failed. This works for now.</p>
 <pre class="r"><code>fruits4 &lt;- fruits3[! fruits3 %in% c(0:9999)]
-fruits4</code></pre>
-<pre><code>##  [1] &quot;bell pepper&quot;  &quot;bilberry&quot;     &quot;blackberry&quot;   &quot;blood orange&quot; &quot;blueberry&quot;   
-##  [6] &quot;cantaloupe&quot;   &quot;chili pepper&quot; &quot;cloudberry&quot;   &quot;elderberry&quot;   &quot;lime&quot;        
-## [11] &quot;lychee&quot;       &quot;mulberry&quot;     &quot;olive&quot;        &quot;salal berry&quot;</code></pre>
+dput(fruits4)</code></pre>
+<p>c(“bell pepper”, “bilberry”, “blackberry”, “blood orange”,
+“blueberry”, “cantaloupe”, “chili pepper”, “cloudberry”, “elderberry”,
+“lime”, “lychee”, “mulberry”, “olive”, “salal berry”)</p>
 </div>
 <div id="describe-in-words-what-these-expressions-will-match" class="section level4" style="margin-top:50px;">
 <h4>3. Describe, in words, what these expressions will match:</h4>
