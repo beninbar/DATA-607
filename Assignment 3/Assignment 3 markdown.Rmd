@@ -1,0 +1,143 @@
+---
+title: "Assignment 3"
+subtitle: "Benjamin Inbar"
+output: html_document
+date: "September 18, 2022"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Read in fivethrityeight.com's college majors data and check it.
+
+```{r}
+data <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/majors-list.csv")
+class(data)
+head(data)
+```
+
+</div><div style="margin-top:50px;">
+#### 1. Using the 173 majors listed in fivethirtyeight.com’s College Majors dataset (https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/), provide code that identifies the majors that contain either "DATA" or "STATISTICS."
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+datamajors <- data %>% filter(grepl('data|statistics', Major, ignore.case=TRUE))
+datamajors
+```
+
+</div><div style="margin-top:50px;">
+#### 2. Write code that transforms the data below:
+[1] "bell pepper" &nbsp;&nbsp; "bilberry"  &nbsp;&nbsp;   "blackberry" &nbsp;&nbsp;  "blood orange"
+
+[5] "blueberry"  &nbsp;&nbsp;  "cantaloupe" &nbsp;&nbsp;  "chili pepper" &nbsp;&nbsp; "cloudberry"  
+
+[9] "elderberry" &nbsp;&nbsp;  "lime"   &nbsp;&nbsp;     "lychee"  &nbsp;&nbsp;    "mulberry"    
+
+[13] "olive"    &nbsp;&nbsp;    "salal berry"
+
+</div><div style="margin-top:50px;">
+#### Into a format like this:
+c("bell pepper", "bilberry", "blackberry", "blood orange", "blueberry", "cantaloupe", "chili pepper", "cloudberry", "elderberry", "lime", "lychee", "mulberry", "olive", "salal berry")
+
+```{r}
+fruits <- '[1] "bell pepper"  "bilberry"     "blackberry"   "blood orange"
+
+[5] "blueberry"    "cantaloupe"   "chili pepper" "cloudberry"  
+
+[9] "elderberry"   "lime"         "lychee"       "mulberry"    
+
+[13] "olive"        "salal berry"'
+
+fruits
+class(fruits)
+```
+
+</div><div style="margin-top:50px;">
+This was pretty challenging given having to learn the R data structure conversions! Hence all the checks.
+Note the new variable assignments, just to avoid accidentally modifying a previous stable data type.
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+fruits2 <- str_extract_all(fruits, "\\w+( \\w+)?", simplify=TRUE)
+fruits2
+class(fruits2)
+```
+
+</div><div style="margin-top:50px;">
+Flattened the matrix array to a vector (and of course, checked).
+```{r}
+fruits3 <- unlist(as.list(fruits2))
+is.vector(fruits3)
+length(fruits3)
+class(fruits3)
+```
+
+</div><div style="margin-top:50px;">
+I removed the digits here. I attempted this earlier in the code with RegEx, but failed. This works for now.
+```{r}
+fruits4 <- fruits3[! fruits3 %in% c(0:9999)]
+fruits4
+```
+
+</div><div style="margin-top:50px;">
+#### 3. Describe, in words, what these expressions will match:
+##### (.)\1\1
+The (.) will match any character and group it via parentheses, but since no parameters are specified around it, it will just return any (or in R, the first) character in the target string. Then the "\1\1" would indicate recalling the match result from that singular group, two times. Thus in our example it attempts to match "TTT," or "eee," which are not in our string. Note the lack of parentheses so add them and add the escape "\".
+```{r}
+regexstring <- c("There's money in the banana $tand.")
+str_extract(regexstring, "(.)\\1\\1")
+```
+
+</div><div style="margin-top:50px;">
+##### "(.)(.)\\2\\1"
+The (.)(.) will match and return any two characters of the target string into two different groups, then backreference the 2nd group result, and then the 1st. Thus in our example it attempts to match "ThhT," "anna," "$tt$," etc, which are obviously not in our string.
+```{r}
+regexstring <- c("There's money in the banana $tand.")
+str_extract(regexstring, "(.)(.)\\2\\1")
+```
+
+</div><div style="margin-top:50px;">
+##### (..)\1
+The (..) will match a set of two characters that repeat themselves i.e. "an""an" in banana. Then, at "\1" it will backreference to match "an" which it does in "stand." Remember to add parentheses and the escape \.
+```{r}
+regexstring <- c("There's money in the banana $tand.")
+str_extract(regexstring, "(..)\\1")
+```
+
+</div><div style="margin-top:50px;">
+##### "(.).\\1.\\1"
+This will match a character set that has any repeat of the 1st (.) group, with "." any SINGLE character in between. In this case we get "anana" from "banana."
+```{r}
+regexstring <- c("There's money in the banana $tand.")
+str_extract(regexstring, "(.).\\1.\\1")
+```
+
+</div><div style="margin-top:50px;">
+##### "(.)(.)(.).*\\3\\2\\1"
+This will match any 3 characters grouped and a 4th, repeated zero or more times, and essentially reverse them and try to match. So it will attempt to match "Thereht," or "bananab," which obviously do not exist in the string.
+```{r}
+regexstring <- c("There's money in the banana $tand.")
+str_extract(regexstring, "(.)(.)(.).*\\3\\2\\1")
+```
+
+</div><div style="margin-top:50px;">
+#### 4. Construct regular expressions to match words that:
+##### Start and end with the same character.
+```{r}
+sentence <- "The refiner also worked the rotator all day."
+str_extract_all(sentence, "\\b([:alpha:])[:alpha:]+\\1\\b")
+```
+
+</div><div style="margin-top:50px;">
+##### Contain a repeated pair of letters (e.g. "church" contains "ch" repeated twice.)
+```{r}
+sentence2 <- "Church bells and gogo carts."
+str_extract_all(sentence2, regex("([:alpha:][:alpha:])[:alpha:]+\\1|(..)\\2", ignore_case=TRUE))
+```
+
+</div><div style="margin-top:50px;">
+##### Contain one letter repeated in at least three places (e.g. "eleven" contains three "e"s.)
+```{r}
+sentence3 <- "There are thirty bananas in pajamas in Mississippi."
+str_extract_all(sentence3, "[:alpha:]*([:alpha:])[:alpha:]*\\1[:alpha:]*\\1[:alpha:]*")
+```
