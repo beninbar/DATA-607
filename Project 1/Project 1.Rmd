@@ -1,0 +1,98 @@
+---
+title: "Project 1"
+subtitle: "Ben Inbar"
+output: html_document
+date: "2022-09-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Create an R Markdown file that generates a .CSV file (that could for example be imported into a SQL database) with the following information for all of the players: Player’s Name, Player’s State, Total Number of Points, Player’s Pre-Rating, and Average Pre Chess Rating of Opponents.
+
+<div style="margin-top:50px;">
+First, let's import chess player .txt file (read in as delimited file) and explore what we have. 195 rows/observations. 1 massive column.
+```{r warning=FALSE, message=FALSE}
+chessdata <- read.delim(file = "https://raw.githubusercontent.com/beninbar/DATA-607/main/Project%201/7645617.txt", header = TRUE)
+class(chessdata)
+library(knitr)
+head(chessdata)
+chessdata[1,]
+chessdata[2,]
+chessdata[3,]
+chessdata[4,]
+chessdata[5,]
+chessdata[6,]
+chessdata[7,]
+```
+
+<div style="margin-top:50px;">
+Drop "header" rows to make Regex slightly easier.
+```{r}
+chessdata = chessdata[-c(1,2),]
+head(chessdata)
+```
+
+<div style="margin-top:50px;">
+Get players using RegEx, and remove blank returns from resulting matrix and coerce to vector.
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+players <- str_extract_all(chessdata, "[:upper:]+\\s[:upper:]*\\s?[:upper:]+.?\\s?[:upper:]+", simplify=TRUE)
+players <- players[!apply(players == "", 1, all), ]
+players
+```
+
+<div style="margin-top:50px;">
+Get players' state.
+```{r}
+state <- str_extract_all(chessdata, "\\s\\s\\b[:upper:]{2}\\b", simplify=TRUE)
+state <- state[!apply(state == "", 1, all), ]
+state <- sub('  ', '', state)
+state
+```
+
+<div style="margin-top:50px;">
+Get total points.
+```{r}
+points <- str_extract_all(chessdata, "[:digit:]\\.[:digit:]", simplify=TRUE)
+points <- points[!apply(points == "", 1, all), ]
+points
+```
+
+<div style="margin-top:50px;">
+Get player pre-ratings. Convert character vector to numeric to work with downstream average rating.
+```{r}
+pre_rating <- str_extract_all(chessdata, "(?<=R:\\s{1,2})[:digit:]{3,4}(?=P*)", simplify=TRUE)
+pre_rating <- pre_rating[!apply(pre_rating == "", 1, all), ]
+pre_rating <- as.numeric(pre_rating)
+pre_rating
+```
+
+<div style="margin-top:50px;">
+To get the average pre-chess rating of opponents, first get opponent IDs.
+```{r}
+opponent_IDs <- str_extract_all(chessdata, "(?<=\\s{1,2})[:digit:]{1,2}\\|", simplify=TRUE)
+opponent_IDs <- opponent_IDs[!apply(opponent_IDs == "", 1, all), ]
+opponent_IDs <- sub('\\|', '', opponent_IDs)
+head(opponent_IDs)
+```
+
+<div style="margin-top:50px;">
+Then, convert opponent_IDs to numeric matrix, and substitute these opponent_IDs for pre-chess rating of each ID matching to the pre_rating vector above. Finally, get row means for the average pre-chess rating.
+```{r}
+rating <- matrix(as.numeric(opponent_IDs), ncol=ncol(opponent_IDs))
+head(rating)
+rating <- matrix(pre_rating[rating], ncol=ncol(rating))
+head(rating)
+avg_rating_opponents <- rowMeans(rating, na.rm = TRUE, dims = 1)
+avg_rating_opponents
+```
+
+<div style="margin-top:50px;">
+Finally, stitch together into a dataframe, and export as a CSV. This [CSV can be found at my Github.](https://github.com/beninbar/DATA-607/blob/main/Project%201/chessdata_csv.csv)
+```{r}
+chessframe <- data.frame(players, state, points, pre_rating, avg_rating_opponents)
+head(chessframe)
+write.csv(chessframe, "C:/Users/bpinb/OneDrive/Desktop/Coursework/DATA 607 Data Acquisition and Management/Project 1/chessdata_csv.csv", row.names = FALSE)
+```
