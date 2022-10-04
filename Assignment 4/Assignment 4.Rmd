@@ -1,0 +1,59 @@
+---
+title: "Assignment 4"
+subtitle: "Ben Inbar"
+output: html_document
+date: "October 3, 2022"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<div style="margin-top:50px;">
+#### Read-in, pivot, and analyze flight delays!
+
+<div style="margin-top:50px;">
+First, read in the .csv and check.
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggplot2)
+data <- read.csv("https://raw.githubusercontent.com/beninbar/DATA-607/main/Assignment%204/Arrival%20delays.csv")
+data
+```
+
+<div style="margin-top:50px;">
+Clean. Drop NA rows, and replace blank values in Airline column with NA and fill them (since did not default these to NA on read-in).
+```{r}
+colnames(data)[1] <- "Airline"
+colnames(data)[2] <- "Disposition"
+data <- drop_na(data)
+data[data==''] <- NA
+data <- fill(data, Airline)
+data
+```
+
+<div style="margin-top:50px;">
+Pivot to a longer data format, and then, crucially, chain a pivot to wider format for the "on time" and "delayed" row values to that. Thanks to classmates for inspiration on the chaining of the pivot_wide.
+```{r}
+longified <- pivot_longer(data, cols=c(3:7), names_to="Destination", values_to="Number of flights") |> pivot_wider(names_from="Disposition", values_from="Number of flights")
+longified
+```
+
+<div style="margin-top:50px;">
+Find percent delayed, mutate to dataframe, and graph grouped by destination and binned by airline to get an overview of most delayed flights by destination and airline.
+San Francisco, despite having fewer flights than Seattle, has the most delays!
+```{r}
+longified <- mutate(longified, `Percent delayed` = 100*(delayed / `on time`))
+ggplot(data=longified, aes(x=Destination, y=`Percent delayed`, fill=Airline)) +
+    geom_bar(stat="identity", position="dodge") +
+    scale_fill_brewer(palette="Paired") +
+    ggtitle("Flights") +
+    theme(axis.title.y=element_blank()) +
+    coord_flip()
+```
+
+<div style="margin-top:50px;">
+Take a quick look at means of percent delays. Looks like AM West could use with some streamlining to reduce delays!
+```{r}
+longified |> group_by(Airline) |> summarize(`Mean percent delayed`=mean(`Percent delayed`))
+```
