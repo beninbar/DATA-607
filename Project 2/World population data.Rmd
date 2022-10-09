@@ -1,0 +1,68 @@
+---
+title: "Project 2-2.Worldpop"
+author: "Ben Inbar"
+date: "10/9/22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<div style="margin-top:50px;">
+Read in Vladimir Nimchenko's world population data from .csv and check.
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(ggplot2)
+data <- read.csv("https://raw.githubusercontent.com/beninbar/DATA-607/main/Project%202/World%20population%20data.csv")
+head(data)
+colnames(data)
+```
+
+<div style="margin-top:50px;">
+Clean column names.
+```{r}
+data <- data |> rename("2022" = X2022.Population, "2020" = X2020.Population, "2015" = X2015.Population, "2010" = X2010.Population,
+                       "2000" = X2000.Population, "1990" = X1990.Population, "1980" = X1980.Population, "1970" = X1970.Population,
+                       "Area" = Area..km.., "Density" = Density..per.km..)
+```
+
+<div style="margin-top:50px;">
+Pivot data: population year columns from wide to long.
+```{r}
+worldpop <- pivot_longer(data, cols=c(6:13), names_to="Year", values_to="Population")
+head(worldpop)
+```
+
+<div style="margin-top:50px;">
+Compare populations in countries in a given year - let's say 2020.
+```{r echo=FALSE}
+pop2020 <- worldpop |> filter(Year=="2020")
+
+ggplot(data=pop2020, aes(x=Population, y=Country)) +
+  geom_bar(stat="identity") +
+  scale_x_continuous(labels = scales::comma) +
+  theme(axis.title.y=element_blank())
+```
+
+<div style="margin-top:50px;">
+Project the future of a country's population based on growth rate - let's say Bangladesh.
+```{r}
+worldpop |> filter(Country=="Bangladesh" & Year=="2022")
+print(paste0("Bangladesh 2023 population, assuming growth rate of 1.01 is annual: ", 171186372*1.01))
+```
+
+<div style="margin-top:50px;">
+Look at the relationship between Area(KmA) and the population of each country in each decade. See if the relationship is direct or inverse. One way we can look at the relationship between Area and population is to divide population by area to get a ratio and mutate to the dataframe. This is essentially a density calculation, but it's interesting to be able to graph that across all years.
+```{r}
+worldpop <- worldpop |> mutate(Popbyarea=Population / Area)
+
+poplabel <- worldpop |> group_by(Country) |> summarize(Year=max(Year), maxpopbyarea=max(Popbyarea))
+ggplot(data=worldpop, aes(x=Year, y=Popbyarea, group=Country)) +
+  geom_line() +
+  geom_label(data=poplabel, aes(x=Year, y=maxpopbyarea + 10, label=Country)) +
+  labs(y="Population / area (sq. km)")
+```
+
+<div style="margin-top:50px;">
+##### It's notable that the population for Bahrain, and Bangladesh, have increased dramatically despite relatively small country sizes.

@@ -1,0 +1,78 @@
+---
+title: "Project 2-3.Coffee"
+author: "Benjamin Inbar"
+date: "10/9/22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<div style="margin-top:50px;">
+Read in Wilson Chau's daily coffee price data from .csv and check.
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(tidyquant)
+data <- read.csv("https://raw.githubusercontent.com/beninbar/DATA-607/main/Project%202/Daily%20coffee%20price.csv")
+data
+
+```
+
+<div style="margin-top:50px;">
+Convert dates to Date class for easier graphing. Drop NAs.
+```{r}
+data <- drop_na(data)
+data$Date = as.Date(data$Date, format = "%m/%d/%Y")
+```
+
+<div style="margin-top:50px;">
+Pivot coffee price at different points of the day from wide to long.
+```{r}
+coffee <- pivot_longer(data, cols=c(2:5), names_to="Disposition", values_to="Price")
+head(coffee)
+```
+
+<div style="margin-top:50px;">
+Window function to find year to date moving average of the price.
+```{r}
+coffee <- coffee |> mutate(Moving_daily_average=cummean(Price))
+```
+
+<div style="margin-top:50px;">
+First we can visualize the data as is.
+```{r}
+ggplot(data=coffee, aes(x=Date, y=Price, color=Disposition)) +
+  geom_line() +
+  geom_point() +
+  labs(y="Price (USD)", x="Date (2000)") +
+  scale_x_date(date_breaks = "2 day", date_labels = "%b-%d") +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) #+
+  #facet_grid(Disposition ~ .)
+```
+
+<div style="margin-top:50px;">
+Let's add the daily moving average to get a better sense overall
+```{r}
+movingavg <- coffee |> group_by(Date) |> summarize(meanaverage=mean(Moving_daily_average))
+movingavg
+
+ggplot(data=movingavg, aes(x=Date, y=meanaverage)) +
+  geom_line() +
+  geom_point() +
+  labs(y="Price (USD)", x="Date (2000)") +
+  scale_x_date(date_breaks = "2 day", date_labels = "%b-%d") +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) +
+  geom_line(data=coffee, aes(y=Price, color=Disposition))
+```
+
+<div style="margin-top:50px;">
+It would be nice to see the variation for each day. Easily done with the help of the "tidyquant" library. Note that this graphic was generated using the wide version of the data. Tick marks represent open and close values, while highs and lows are at each end of each line.
+```{r}
+ggplot(data=data, aes(x=Date)) +
+  geom_barchart(aes(open = Open, high = High, low = Low, close = Close), colour_up = "darkgreen", colour_down = "red") +
+  labs(y="Price (USD)", x="Date (2000)") +
+  scale_x_date(date_breaks = "2 day", date_labels = "%b-%d") +
+  theme(axis.text.x=element_text(angle=60, hjust=1))
+```
