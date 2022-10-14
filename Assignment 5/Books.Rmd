@@ -1,0 +1,47 @@
+---
+title: "Assignment 5"
+author: "Benjamin Inbar"
+date: "October 13, 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##### Write R code, using your packages of choice, to load the information from each of the three sources into separate R data frames.
+
+```{r warnings=FALSE, messages=FALSE}
+library(rvest)
+library(jsonlite)
+library(XML)
+library(RCurl)
+library(knitr)
+```
+
+<div style="margin-top:50px;">
+<br>
+Pull from <a href="https://raw.githubusercontent.com/beninbar/DATA-607/main/Assignment%205/Books.html">HTML</a>. Use the rvest package, and convert the html table from the html read-in to a dataframe.
+```{r}
+html <- read_html("https://raw.githubusercontent.com/beninbar/DATA-607/main/Assignment%205/Books.html")
+data <- html |> html_table()
+html_df <- as.data.frame(data)
+kable(html_df)
+```
+
+<div style="margin-top:50px;">
+<br>
+Pull from <a href="https://raw.githubusercontent.com/beninbar/DATA-607/main/Assignment%205/Books.json">JSON</a>. Use the jsonlite package and set 'simplifyVector=TRUE' to read directly into a dataframe.
+```{r}
+json <- read_json("https://raw.githubusercontent.com/beninbar/DATA-607/main/Assignment%205/Books.json", simplifyVector=TRUE)
+kable(json)
+```
+
+<div style="margin-top:50px;">
+<br>
+Pull from <a href="https://raw.githubusercontent.com/beninbar/DATA-607/main/Assignment%205/Books.xml">XML</a>. Use the RCurl library to pull the page, which then allows the xml parser to work.
+```{r}
+url <- getURL("https://raw.githubusercontent.com/beninbar/DATA-607/main/Assignment%205/Books.xml")
+xml <- xmlToDataFrame(url)
+kable(xml)
+```
