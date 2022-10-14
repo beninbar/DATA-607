@@ -1,24 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Books>
-  <row>
+  <record>
     <Title>The Left Hand of Darkness</Title>
     <Authors>Ursula K. Le Guin</Authors>
     <Publication_date>March 1969</Publication_date>
     <Genre>Science fiction</Genre>
     <ISBN>9780441478125</ISBN>
-  </row>
-  <row>
+  </record>
+  <record>
     <Title>Blackout</Title>
     <Authors>Dhonielle Clayton, Tiffany D. Jackson, Nic Stone, Angie Thomas, Ashley Woodfolk, Nicola Yoon</Authors>
     <Publication_date>June 22, 2021</Publication_date>
     <Genre>Young adult</Genre>
     <ISBN>9780063088092</ISBN>
-  </row>
-  <row>
+  </record>
+  <record>
     <Title>The Marriage Plot</Title>
     <Authors>Jeffrey Eugenides</Authors>
     <Publication_date>October 2011</Publication_date>
     <Genre>Romance</Genre>
     <ISBN>9780374203054</ISBN>
-  </row>
+  </record>
 </Books>
