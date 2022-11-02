@@ -1,0 +1,35 @@
+---
+title: "Discussion 11_Recommender systems"
+author: "Benjamin Inbar"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<div style="margin-top:50px;">
+Your task is to analyze an existing recommender system that you find interesting.  You should:
+
+1. Perform a Scenario Design analysis.  Consider whether it makes sense for your selected recommender system to perform scenario design twice, once for the organization (e.g. Amazon.com) and once for the organization's customers.
+
+<a href="https://www.grubhub.com/lets-eat">Grubhub</a> is one of the earlier incarnations of food delivery services, accounting for 70% of market share with its sister company Seamless when first merged in 2013, though now fallen to 20% thanks to stiff competition from the likes of DoorDash and UberEats, among others. I discovered Grubhub when moving to New York City in the Spring of 2011 at 23 years old. I felt that I very much was a target user: young, desiring convenience over the drab, poorly executed self cooked meal, and with the wish to taste all that New York's famed cuisines had to offer. <a href="https://www.restaurantdive.com/news/report-grubhub-is-the-most-used-delivery-app/545719/#:~:text=New%20research%20from%20Zion%20%26%20Zion,year%2Dolds%20(51%25">This may still be true</a>, with 30-44 year olds coming in at a close 2nd target age group. This makes sense given both of these bracket's prime working age, and ambitious or fast-paced "big-city" lifestyles. In addition, restaurant owners/managers, grocery stores, and gig workers/delivery drivers are part of its target.
+
+Grubhub's initial stated goals were to give restaurants the ability to plug into the digital economy, and act to connect restaurants with diners, benefitting both by increasing the reach of food and business. They <a href="https://about.grubhub.com/">bill themselves as helping</a> locals increase their variety of cuisines and by giving them solid gig jobs. Though whether this is actually the case <a href=https://www.economist.com/1843/2021/01/26/gulp-the-secret-economics-of-food-delivery">is arguable</a>. Still, I myself use them at least once a week, and enjoy the "recommended for you" dishes at restaurants as it simplifies the process of choosing something from the menu when I'm not sure what to eat, as well as the "picked for you" section when I'm not even sure which restaurant to pick!
+
+![](C:/Users/bpinb/OneDrive/Desktop/Coursework/DATA 607 Data Acquisition and Management/Discussion 11.jpg)
+
+To a degree, Grubhub succeeds in connecting businesses with diners, both by increasing cuisine variety and allowing for "experimentation" that otherwise would not be possible. But its reduced market share is indicative. One area in which there could be improvement would be its branding. I remember in 2011 that they seemed edgy, hip, and desirable. Sadly they have not done anything to set themselves apart from their competitors in this regard, hanging on to the same logo and color scheme, with only minor standard improvements in the user interface. The website feels "standard" and "reliable," which does not excite users. A branding overhaul, specifically by streamlining their logo and color schemes, along with emphasizing newer food picks for users, might help revive that missing edginess. Indeed, some of this may be at the organization or managerial in which there is an aversity to risk or modifying their internal workflows since what they have now works, at least for 20% market share.
+
+
+2. Attempt to reverse engineer what you can about the site, from the site interface and any available information that you can find on the Internet or elsewhere.
+
+It seems clear that the recommendation of food items or restaurants is a <a href="https://www.wired.com/story/how-grubhub-analyzed-4000-dishes-to-predict-your-next-order/">particularly complex problem</a> owing to the unstructured nature of menu items, and the vastness of heterogeneity of choices among users. Although collaborative filtering seems a popular method for recommending among food delivery services, Grubhub utilizes it along with its own propietary taxonomy of food that helps give context and categorization to the majority of the data. This, and based on its various categories of recommendations (e.g. "Locations near you," "45 mins or less," and "National picks"), which presumably use location filtering and delivery tracking among other datapoints, give the impression that Grubhub likely utilizes various methods in its engine.
+
+3. Include specific recommendations about how to improve the site's recommendation capabilities going forward.
+
+Bring back the menu-specific recommendation, which seems to no longer appear for me when I search among multiple restaurants. I liked this feature, and it could help whet other users' appetites during search, which seems like a surefire way to increase engagement and sale follow-through, as well as assist with re-branding as a unique offering for Grubhub relative to other food delivery services. It could do this without listing food characteristics from its inbuilt taxonomy, reducing competitive pressures. 
+Also, add time-of-day specific options. This is something that other delivery services seem to offer, which can be helpful when a user approaches the platform with "dinner" in mind as opposed to "what's good?" or "what's closest?" Naturally this would also rely on a form of collaborative filtering by identifying how users classify mealtimes.
+
+<div style="margin-top:50px;">
