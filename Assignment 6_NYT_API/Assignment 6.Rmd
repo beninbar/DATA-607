@@ -1,0 +1,47 @@
+---
+title: "Assignment 6_NYT API"
+author: "Benjamin Inbar"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<div style="margin-top:50px;">
+##### Your task is to choose one of the New York Times APIs, construct an interface in R to read in the JSON data, and transform it into an R DataFrame.
+
+<div style="margin-top:50px;">
+Call in httr and jsonlite libraries.
+```{r warnings=FALSE, messages=FALSE}
+library(httr)
+library(jsonlite)
+library(knitr)
+```
+
+<div style="margin-top:50px;">
+Hide my API key by calling it in from a file located in the directory related to this project.
+```{r warning=FALSE, messages=FALSE}
+setwd("C:/Users/bpinb/OneDrive/Desktop/Coursework/DATA 607 Data Acquisition and Management/Assignment 6_NYT_API")
+key <- read.delim("NYT_API.txt")
+key <- colnames(key)
+```
+
+<div style="margin-top:50px;">
+Get NYT movie reviews of Titanic.
+```{r}
+url <- paste0("https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=titanic&api-key=", key)
+NYT <- GET(url)
+NYT
+```
+
+<div style="margin-top:50px;">
+Extract raw NYT data to text, then to JSON, then coerce to a dataframe.
+```{r warning=FALSE, messages=FALSE}
+text <- content(NYT, "text")
+text_as_json <- fromJSON(text)
+titanic_df <- as.data.frame(text_as_json)
+
+kable(titanic_df)
+```
