@@ -1,0 +1,149 @@
+---
+title: "Assignment 7_Sentiment analysis"
+author: "Benjamin Inbar"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+###### Sentiment analysis of US Presidential State of the Union speeches from 1950-2020. Originally, the idea was to scrape from a historical website, then to pull each of the cleaned Kaggle .txt files (https://www.kaggle.com/datasets/rtatman/state-of-the-union-corpus-1989-2017?resource=download) from my Github, but in the interest of time, I chose to use the very handy R 'sotu' package (https://github.com/statsmaths/sotu/).
+
+###### Note that a portion of this code was borrowed from chapter 2 of "Text Mining in R: A Tidy Approach" by Julia Silge and David Robinson, which can be found here: https://www.tidytextmining.com/sentiment.html.
+<div style="margin-top:50px;">
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(tidytext)
+library(sotu)
+library(stringr)
+library(ggplot2)
+library(wordcloud)
+
+head(sotu_meta)
+sotu_text[[1]]
+```
+<div style="margin-top:50px;">
+Take a subset of speeches from 1950-2020. We want the sentiment analyses to better match, and text from older speeches may not match as well.
+```{r}
+metaset <- sotu_meta |> filter(sotu_meta$year>=1950)
+textset <- tail(sotu_text, n=79)
+
+metaset <- mutate(metaset, text=textset)
+metaset[, c('X', 'sotu_type')] <- NULL
+rownames(metaset) = seq(length=nrow(metaset))
+```
+<div style="margin-top:50px;">
+NRC lexicon citation: This dataset was published in Saif M. Mohammad and Peter Turney. (2013), "Crowdsourcing a Word-Emotion Association Lexicon." Computational Intelligence, 29(3): 436-465.
+```{r}
+nrc <- get_sentiments('nrc')
+afinn <- get_sentiments('afinn')
+bing <- get_sentiments('bing')
+```
+<div style="margin-top:50px;">
+Extract words, and append words with president, year, and party to a new dataframe in long format.
+```{r}
+words_all <- data.frame()
+for (corpus in 1:nrow(metaset)) {
+  words <- str_extract_all(metaset[corpus, 'text'], "[[:alpha:]]+")
+  for (word in words) {
+    df <- cbind(word, president=metaset[corpus, 'president'], year=metaset[corpus, 'year'], party=metaset[corpus, 'party'])
+  }
+  words_all <- rbind(words_all, df)
+}
+```
+<div style="margin-top:50px;">
+Perform the same analysis as shown in Ch. 2 of Text Mining with R to get an overall sentiment score, but instead of per book, do so per President. Normalize across 100-word chunks of speech, for all speeches, per President.
+```{r warnings=FALSE, message=FALSE}
+bing_analysis1 <- words_all |> inner_join(bing) |> count(party, president, index=row_number() %/% 100, sentiment) |>
+  pivot_wider(names_from = sentiment, values_from = n) |> mutate(sentiment = positive - negative)
+```
+<div style="margin-top:50px;">
+Plot, colorizing by party affiliation.
+```{r warnings=FALSE, message=FALSE}
+ggplot(bing_analysis1, aes(index, sentiment, fill=party)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~president, ncol = 2, scales = "free_x") +
+  scale_fill_manual(values=c("darkblue", "darkred"))
+```
+<div style="margin-top:50px;">
+That was nice to see, but it might be better to just aggregate sentiment for each President. Normalize to 800 word chunks.
+```{r warnings=FALSE, message=FALSE}
+bing_analysis2 <- words_all |> inner_join(bing) |> group_by(president) |> slice_sample(n=800) |> count(sentiment) |>
+  pivot_wider(names_from = sentiment, values_from = n) |> mutate(sentiment = positive - negative)
+
+ggplot(bing_analysis2, aes(reorder(president, sentiment), sentiment)) +
+  geom_col(show.legend = FALSE, fill='darkblue') +
+  coord_flip() +
+  theme(axis.title.y=element_blank())
+```
+<div style="margin-top:50px;">
+To compare the other sentiment analysis lexicons, let's filter for just one President, Jimmy Carter, who seems to have the most verbose speeches. The following code is only minimally adapted from Ch. 2 of Text Mining with R.
+```{r}
+jimmycarter <- words_all |> filter(president == "Jimmy Carter")
+```
+<div style="margin-top:50px;">
+Use 'afinn' lexicon to get the -5 to +5 score for each word, summarize to get sum for all word scores for each chunk.
+```{r warnings=FALSE, message=FALSE}
+afinn <- jimmycarter |> inner_join(afinn) |> group_by(index = row_number() %/% 100) |>
+  summarise(sentiment = sum(value)) |> mutate(method = "AFINN")
+print(afinn, n=10)
+```
+<div style="margin-top:50px;">
+Use BOTH 'bing' and 'nrc' lexicons to get the positive/negative sentiments, pivot wide, and add net sentiment calculation.
+```{r warnings=FALSE, message=FALSE}
+bing_and_nrc <- bind_rows(jimmycarter |> inner_join(bing) |> mutate(method = "Bing"), jimmycarter |> inner_join(nrc) |> 
+  filter(sentiment %in% c("positive", "negative")) |> mutate(method = "NRC")) |> count(method, index = row_number() %/% 100, sentiment) |>
+  pivot_wider(names_from = sentiment, values_from = n, values_fill = 0) |>
+  mutate(sentiment = positive - negative)
+head(bing_and_nrc)
+tail(bing_and_nrc)
+```
+<div style="margin-top:50px;">
+Bind both 'afinn' and 'bing'/'nrc' tibbles and graph sentiment. Interesting that for SOTU speeches, unlike for Pride and Prejudice, AFINN shows higher values than the other lexicons instead of NRC.
+```{r}
+bind_rows(afinn, bing_and_nrc) |>
+  ggplot(aes(index, sentiment, fill = method)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~method, ncol = 1, scales = "free_x")
+```
+<div style="margin-top:50px;">
+Quick look at the word cloud for all words, not including stop words.
+```{r warnings=FALSE, message=FALSE}
+words_all_nostop <- words_all |> anti_join(stop_words)
+words_all_nostop |> count(word) |> with(wordcloud(word, n, max.words = 300))
+```
+<div style="margin-top:50px;">
+##### Extend this analysis using the 'loughran' lexicon, which I believe is part of the umbrella source for the lexicons established above.
+```{r}
+loughran <- get_sentiments('loughran')
+```
+<div style="margin-top:50px;">
+Perform the same analysis as above for all Presidents, using loughran.
+```{r warnings=FALSE, message=FALSE}
+loughran_analysis1 <- words_all |> inner_join(loughran) |> count(party, president, index=row_number() %/% 100, sentiment) |>
+  pivot_wider(names_from = sentiment, values_from = n) |> mutate(sentiment = positive - negative)
+```
+<div style="margin-top:50px;">
+Plot, again colorizing by party affiliation. Huge difference! We see a much more negative trends overall.
+```{r}
+ggplot(loughran_analysis1, aes(index, sentiment, fill=party)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~president, ncol = 2, scales = "free_x") +
+  scale_fill_manual(values=c("darkblue", "darkred"))
+```
+<div style="margin-top:50px;">
+Let's add the loughran sentiment analysis to the overall from before, still using Jimmy Carter for reference.
+```{r}
+loughran_analysis2 <- loughran_analysis1 |> select(c('index', 'negative', 'positive', 'sentiment')) |> mutate(method='loughran')
+```
+<div style="margin-top:50px;">
+Combine and plot. It is very clear loughran has much more negative sentiment scoring, compared with any of the other lexicons.
+```{r}
+bing_nrc_loughran <- bind_rows(bing_and_nrc, loughran_analysis2, afinn)
+ggplot(bing_nrc_loughran, aes(index, sentiment, fill = method)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~method, ncol = 1, scales = "free_x")
+```
+<div style="margin-top:50px;">
