@@ -13,14 +13,19 @@ knitr::opts_chunk$set(echo = TRUE)
 ##### In this project, we look at immigration data from various sources to determine how the US and each individual state compares for migrant employment.
 ##### First, we took data from OECD.org, which compiles data for OECD member countries.
 
-Note, this was loaded locally, but can be found [here](https://stats.oecd.org/Index.aspx?DataSetCode=MIG) and in our [Github](https://github.com/beninbar/DATA-607/blob/main/Final%20project/OECD.zip).
+<div style="margin-top:50px;">
+First, we pulled OECD data [here](https://stats.oecd.org/Index.aspx?DataSetCode=MIG) and uploaded to [Github](https://github.com/beninbar/DATA-607/blob/main/Final%20project/OECD.zip).
 
 ```{r warning=FALSE, message=FALSE}
 library(tidyverse)
 library(DescTools)
 library(knitr)
 
-oecd <- read_csv("C:\\Users\\bpinb\\OneDrive\\Desktop\\Coursework\\DATA 607 Data Acquisition and Management\\Final project\\OECD.csv")
+temp <- tempfile()
+oecd <- download.file("https://github.com/beninbar/DATA-607/blob/main/Final%20project/data/OECD.zip?raw=TRUE", temp, mode = "wb")
+oecd <- unzip(temp, "OECD.csv")
+oecd <- read.csv(oecd)
+
 kable(head(oecd))
 nrow(oecd)
 oecd |> group_by(Variable) |> summarize()
@@ -37,7 +42,25 @@ kable(head(aggregated))
 ```
 
 <div style="margin-top:50px;">
-Run F-test with Dunnett's post-hoc test to compare the United States to all other OECD countries. We're using a Dunnett's posthoc test since in this case we have many comparisons (35 countries compared to each other), but we're only interested in finding out if one of them (the United States) is significantly different.
+Let's visualize this with a multi-line chart.
+```{r}
+library(ggrepel)
+
+for_label <- aggregated |> filter(Year=="2015")
+
+ggplot(data=aggregated, aes(x=Year, y=Totals, color=Country)) +
+  geom_line() +
+  ggtitle("Inflows of foreign population per country, 2000-2021") +
+  theme(axis.title.y=element_blank(), legend.position="none", panel.grid.minor = element_blank()) +
+  scale_y_continuous(labels = scales::comma, expand=c(0, 100000)) +
+  scale_x_continuous(expand=c(.01, 0)) + 
+  geom_label_repel(data = subset(for_label, Country==c("Germany", "United States")), aes(label=Country), nudge_x=2, nudge_y=400000,     segment.color=NA)
+```
+
+<div style="margin-top:50px;">
+It's clear that the United States and Germany are two of the highest inflow countries by far. This tracks with the migrant crisis in 2015, when Germany opened its borders to unprecedented numbers of Middle Eastern and African refugees.
+
+We can also run an F-test with Dunnett's post-hoc test to compare the United States to all other OECD countries. We're using a Dunnett's posthoc test since in this case we have many comparisons (35 countries compared to each other), but we're only interested in finding out if one of them (the United States) is significantly different.
 ```{r}
 anova <- aov(Totals ~ Country, aggregated)
 summary(anova)
@@ -46,3 +69,6 @@ set.seed(42)
 DunnettTest(x=aggregated$Totals, g=aggregated$Country, control="United States")
 ```
 
+<div style="margin-top:50px;">
+#### Indeed, the only other country that shows less significant of a difference in migration (but notably, is still significant), is Germany!
+<div style="margin-top:50px;">
