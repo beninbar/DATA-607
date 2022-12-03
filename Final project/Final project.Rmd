@@ -1,0 +1,48 @@
+---
+title: "DATA 607 Final project"
+author: "Ben Inbar, Josh Forster"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<div style="margin-top:50px;">
+##### In this project, we look at immigration data from various sources to determine how the US and each individual state compares for migrant employment.
+##### First, we took data from OECD.org, which compiles data for OECD member countries.
+
+Note, this was loaded locally, but can be found [here](https://stats.oecd.org/Index.aspx?DataSetCode=MIG) and in our [Github](https://github.com/beninbar/DATA-607/blob/main/Final%20project/OECD.zip).
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(DescTools)
+library(knitr)
+
+oecd <- read_csv("C:\\Users\\bpinb\\OneDrive\\Desktop\\Coursework\\DATA 607 Data Acquisition and Management\\Final project\\OECD.csv")
+kable(head(oecd))
+nrow(oecd)
+oecd |> group_by(Variable) |> summarize()
+```
+<div style="margin-top:50px;">
+As we can see, the data is in long format. The "Variable" column is of particular interest, and for immigration specifically, the "Inflows of foreign population by nationality" subset.
+
+Let's clean the dataframe: get rid of duplicate/unnecessary columns, subset to values of only inflows of foreign population, and aggregate inflows per country for all countries of birth (first left hand column).
+```{r warning=FALSE, message=FALSE}
+oecd <- oecd |> filter(Variable=="Inflows of foreign population by nationality") |> select(Country, Year, Value)
+
+aggregated <- oecd |> group_by(Country, Year) |> summarize(Totals = sum(Value))
+kable(head(aggregated))
+```
+
+<div style="margin-top:50px;">
+Run F-test with Dunnett's post-hoc test to compare the United States to all other OECD countries. We're using a Dunnett's posthoc test since in this case we have many comparisons (35 countries compared to each other), but we're only interested in finding out if one of them (the United States) is significantly different.
+```{r}
+anova <- aov(Totals ~ Country, aggregated)
+summary(anova)
+
+set.seed(42)
+DunnettTest(x=aggregated$Totals, g=aggregated$Country, control="United States")
+```
+
