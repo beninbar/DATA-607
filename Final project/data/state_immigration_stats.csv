@@ -1,0 +1,409 @@
+,order,header,state,foreign_born,us_born,foreign_median_wages,us_median_wages
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",AL,"76,301","1,550,669",46493,51904
+1,1,"Earned $1-$9,999, or incurred a loss",AL,1.8%,2.0%,46493,51904
+2,2,"Earned $10,000-$14,999",AL,3.9%,3.5%,46493,51904
+3,3,"Earned $15,000-$24,999",AL,23.3%,14.5%,46493,51904
+4,4,"Earned $25,000-$34,999",AL,18.9%,17.1%,46493,51904
+5,5,"Earned $35,000-$49,999",AL,19.0%,20.5%,46493,51904
+6,6,"Earned $50,000-$74,999",AL,16.8%,22.8%,46493,51904
+7,7,"Earned $75,000 or more",AL,16.3%,19.8%,46493,51904
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",AK,"25,421","221,180",72217,78196
+1,1,"Earned $1-$9,999, or incurred a loss",AK,2.0%,1.5%,72217,78196
+2,2,"Earned $10,000-$14,999",AK,2.2%,1.8%,72217,78196
+3,3,"Earned $15,000-$24,999",AK,16.1%,8.2%,72217,78196
+4,4,"Earned $25,000-$34,999",AK,18.0%,12.2%,72217,78196
+5,5,"Earned $35,000-$49,999",AK,20.7%,17.8%,72217,78196
+6,6,"Earned $50,000-$74,999",AK,19.5%,25.5%,72217,78196
+7,7,"Earned $75,000 or more",AK,21.4%,32.9%,72217,78196
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",AZ,"431,832","1,977,139",53291,63899
+1,1,"Earned $1-$9,999, or incurred a loss",AZ,1.9%,1.9%,53291,63899
+2,2,"Earned $10,000-$14,999",AZ,3.2%,2.3%,53291,63899
+3,3,"Earned $15,000-$24,999",AZ,18.1%,10.8%,53291,63899
+4,4,"Earned $25,000-$34,999",AZ,21.0%,15.9%,53291,63899
+5,5,"Earned $35,000-$49,999",AZ,19.7%,21.9%,53291,63899
+6,6,"Earned $50,000-$74,999",AZ,17.2%,22.5%,53291,63899
+7,7,"Earned $75,000 or more",AZ,19.1%,24.6%,53291,63899
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",AR,"79,500","919,093",51567,48785
+1,1,"Earned $1-$9,999, or incurred a loss",AR,1.5%,1.6%,51567,48785
+2,2,"Earned $10,000-$14,999",AR,1.9%,3.6%,51567,48785
+3,3,"Earned $15,000-$24,999",AR,20.3%,16.3%,51567,48785
+4,4,"Earned $25,000-$34,999",AR,24.6%,19.0%,51567,48785
+5,5,"Earned $35,000-$49,999",AR,24.6%,21.7%,51567,48785
+6,6,"Earned $50,000-$74,999",AR,12.2%,21.0%,51567,48785
+7,7,"Earned $75,000 or more",AR,14.9%,16.8%,51567,48785
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",CA,"4,744,697","8,877,568",71325,84598
+1,1,"Earned $1-$9,999, or incurred a loss",CA,1.6%,1.5%,71325,84598
+2,2,"Earned $10,000-$14,999",CA,3.3%,2.0%,71325,84598
+3,3,"Earned $15,000-$24,999",CA,13.2%,8.5%,71325,84598
+4,4,"Earned $25,000-$34,999",CA,16.3%,12.6%,71325,84598
+5,5,"Earned $35,000-$49,999",CA,18.5%,17.0%,71325,84598
+6,6,"Earned $50,000-$74,999",CA,17.7%,21.7%,71325,84598
+7,7,"Earned $75,000 or more",CA,29.3%,36.8%,71325,84598
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",CO,"265,606","1,914,924",65008,78969
+1,1,"Earned $1-$9,999, or incurred a loss",CO,1.4%,1.4%,65008,78969
+2,2,"Earned $10,000-$14,999",CO,2.5%,2.2%,65008,78969
+3,3,"Earned $15,000-$24,999",CO,11.5%,7.3%,65008,78969
+4,4,"Earned $25,000-$34,999",CO,17.9%,12.2%,65008,78969
+5,5,"Earned $35,000-$49,999",CO,21.1%,19.5%,65008,78969
+6,6,"Earned $50,000-$74,999",CO,20.8%,24.4%,65008,78969
+7,7,"Earned $75,000 or more",CO,24.8%,33.0%,65008,78969
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",CT,"237,104","1,022,531",71056,80376
+1,1,"Earned $1-$9,999, or incurred a loss",CT,1.7%,1.5%,71056,80376
+2,2,"Earned $10,000-$14,999",CT,1.5%,1.4%,71056,80376
+3,3,"Earned $15,000-$24,999",CT,11.3%,5.2%,71056,80376
+4,4,"Earned $25,000-$34,999",CT,13.6%,9.7%,71056,80376
+5,5,"Earned $35,000-$49,999",CT,19.3%,16.6%,71056,80376
+6,6,"Earned $50,000-$74,999",CT,21.7%,25.7%,71056,80376
+7,7,"Earned $75,000 or more",CT,30.9%,39.8%,71056,80376
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",DE,"47,525","291,146",70320,70145
+1,1,"Earned $1-$9,999, or incurred a loss",DE,1.0%,1.4%,70320,70145
+2,2,"Earned $10,000-$14,999",DE,1.7%,2.3%,70320,70145
+3,3,"Earned $15,000-$24,999",DE,12.2%,8.7%,70320,70145
+4,4,"Earned $25,000-$34,999",DE,16.5%,14.1%,70320,70145
+5,5,"Earned $35,000-$49,999",DE,20.1%,20.5%,70320,70145
+6,6,"Earned $50,000-$74,999",DE,22.9%,24.1%,70320,70145
+7,7,"Earned $75,000 or more",DE,25.6%,28.9%,70320,70145
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",DC,"42,445","262,758",89740,92418
+1,1,"Earned $1-$9,999, or incurred a loss",DC,1.3%,1.2%,89740,92418
+2,2,"Earned $10,000-$14,999",DC,0.4%,0.7%,89740,92418
+3,3,"Earned $15,000-$24,999",DC,7.2%,3.1%,89740,92418
+4,4,"Earned $25,000-$34,999",DC,9.3%,5.6%,89740,92418
+5,5,"Earned $35,000-$49,999",DC,13.5%,13.1%,89740,92418
+6,6,"Earned $50,000-$74,999",DC,19.6%,21.7%,89740,92418
+7,7,"Earned $75,000 or more",DC,48.6%,54.7%,89740,92418
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",FL,"2,077,324","5,272,073",52773,61144
+1,1,"Earned $1-$9,999, or incurred a loss",FL,1.9%,1.7%,52773,61144
+2,2,"Earned $10,000-$14,999",FL,4.9%,3.1%,52773,61144
+3,3,"Earned $15,000-$24,999",FL,20.8%,12.8%,52773,61144
+4,4,"Earned $25,000-$34,999",FL,21.6%,18.0%,52773,61144
+5,5,"Earned $35,000-$49,999",FL,19.2%,21.4%,52773,61144
+6,6,"Earned $50,000-$74,999",FL,15.9%,20.9%,52773,61144
+7,7,"Earned $75,000 or more",FL,15.8%,22.1%,52773,61144
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",GA,"559,175","3,272,060",63955,61795
+1,1,"Earned $1-$9,999, or incurred a loss",GA,1.6%,1.8%,63955,61795
+2,2,"Earned $10,000-$14,999",GA,3.5%,3.2%,63955,61795
+3,3,"Earned $15,000-$24,999",GA,17.6%,12.0%,63955,61795
+4,4,"Earned $25,000-$34,999",GA,19.9%,16.8%,63955,61795
+5,5,"Earned $35,000-$49,999",GA,17.8%,20.1%,63955,61795
+6,6,"Earned $50,000-$74,999",GA,15.4%,22.2%,63955,61795
+7,7,"Earned $75,000 or more",GA,24.1%,23.9%,63955,61795
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",HI,"121,331","418,813",73290,85050
+1,1,"Earned $1-$9,999, or incurred a loss",HI,2.4%,1.7%,73290,85050
+2,2,"Earned $10,000-$14,999",HI,1.9%,1.4%,73290,85050
+3,3,"Earned $15,000-$24,999",HI,12.2%,8.7%,73290,85050
+4,4,"Earned $25,000-$34,999",HI,18.6%,13.8%,73290,85050
+5,5,"Earned $35,000-$49,999",HI,26.4%,20.4%,73290,85050
+6,6,"Earned $50,000-$74,999",HI,18.9%,25.9%,73290,85050
+7,7,"Earned $75,000 or more",HI,19.4%,28.1%,73290,85050
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",ID,"48,809","525,522",52782,61672
+1,1,"Earned $1-$9,999, or incurred a loss",ID,2.2%,2.1%,52782,61672
+2,2,"Earned $10,000-$14,999",ID,2.5%,3.0%,52782,61672
+3,3,"Earned $15,000-$24,999",ID,18.7%,12.3%,52782,61672
+4,4,"Earned $25,000-$34,999",ID,23.9%,17.5%,52782,61672
+5,5,"Earned $35,000-$49,999",ID,23.3%,22.0%,52782,61672
+6,6,"Earned $50,000-$74,999",ID,14.0%,22.2%,52782,61672
+7,7,"Earned $75,000 or more",ID,15.4%,20.9%,52782,61672
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",IL,"847,872","3,758,607",66827,69713
+1,1,"Earned $1-$9,999, or incurred a loss",IL,1.4%,1.7%,66827,69713
+2,2,"Earned $10,000-$14,999",IL,2.8%,2.3%,66827,69713
+3,3,"Earned $15,000-$24,999",IL,12.7%,8.9%,66827,69713
+4,4,"Earned $25,000-$34,999",IL,18.8%,13.3%,66827,69713
+5,5,"Earned $35,000-$49,999",IL,18.8%,18.1%,66827,69713
+6,6,"Earned $50,000-$74,999",IL,19.1%,24.2%,66827,69713
+7,7,"Earned $75,000 or more",IL,26.4%,31.5%,66827,69713
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",IN,"160,470","2,184,416",51198,58177
+1,1,"Earned $1-$9,999, or incurred a loss",IN,1.5%,1.6%,51198,58177
+2,2,"Earned $10,000-$14,999",IN,2.5%,2.2%,51198,58177
+3,3,"Earned $15,000-$24,999",IN,12.1%,10.8%,51198,58177
+4,4,"Earned $25,000-$34,999",IN,23.1%,17.4%,51198,58177
+5,5,"Earned $35,000-$49,999",IN,22.1%,23.0%,51198,58177
+6,6,"Earned $50,000-$74,999",IN,16.1%,23.5%,51198,58177
+7,7,"Earned $75,000 or more",IN,22.5%,21.4%,51198,58177
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",IA,"83,940","1,081,535",52528,62202
+1,1,"Earned $1-$9,999, or incurred a loss",IA,1.6%,1.8%,52528,62202
+2,2,"Earned $10,000-$14,999",IA,2.2%,2.5%,52528,62202
+3,3,"Earned $15,000-$24,999",IA,14.7%,8.8%,52528,62202
+4,4,"Earned $25,000-$34,999",IA,23.3%,15.5%,52528,62202
+5,5,"Earned $35,000-$49,999",IA,25.1%,23.3%,52528,62202
+6,6,"Earned $50,000-$74,999",IA,15.8%,26.7%,52528,62202
+7,7,"Earned $75,000 or more",IA,17.3%,21.4%,52528,62202
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",KS,"100,328","976,102",53844,62795
+1,1,"Earned $1-$9,999, or incurred a loss",KS,1.6%,2.2%,53844,62795
+2,2,"Earned $10,000-$14,999",KS,3.6%,3.1%,53844,62795
+3,3,"Earned $15,000-$24,999",KS,17.9%,10.0%,53844,62795
+4,4,"Earned $25,000-$34,999",KS,22.2%,15.1%,53844,62795
+5,5,"Earned $35,000-$49,999",KS,20.1%,22.6%,53844,62795
+6,6,"Earned $50,000-$74,999",KS,19.1%,24.2%,53844,62795
+7,7,"Earned $75,000 or more",KS,15.5%,22.8%,53844,62795
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",KY,"92,134","1,368,618",51848,52320
+1,1,"Earned $1-$9,999, or incurred a loss",KY,1.0%,2.0%,51848,52320
+2,2,"Earned $10,000-$14,999",KY,5.2%,3.0%,51848,52320
+3,3,"Earned $15,000-$24,999",KY,17.0%,12.9%,51848,52320
+4,4,"Earned $25,000-$34,999",KY,19.7%,16.8%,51848,52320
+5,5,"Earned $35,000-$49,999",KY,21.5%,23.0%,51848,52320
+6,6,"Earned $50,000-$74,999",KY,17.9%,23.5%,51848,52320
+7,7,"Earned $75,000 or more",KY,17.7%,18.8%,51848,52320
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",LA,"81,319","1,433,875",44579,51299
+1,1,"Earned $1-$9,999, or incurred a loss",LA,1.8%,2.1%,44579,51299
+2,2,"Earned $10,000-$14,999",LA,4.7%,5.3%,44579,51299
+3,3,"Earned $15,000-$24,999",LA,22.6%,13.8%,44579,51299
+4,4,"Earned $25,000-$34,999",LA,20.3%,15.2%,44579,51299
+5,5,"Earned $35,000-$49,999",LA,16.5%,19.5%,44579,51299
+6,6,"Earned $50,000-$74,999",LA,17.1%,21.9%,44579,51299
+7,7,"Earned $75,000 or more",LA,17.0%,22.1%,44579,51299
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",ME,"16,720","435,455",52809,58056
+1,1,"Earned $1-$9,999, or incurred a loss",ME,1.4%,1.5%,52809,58056
+2,2,"Earned $10,000-$14,999",ME,1.4%,2.2%,52809,58056
+3,3,"Earned $15,000-$24,999",ME,11.8%,9.7%,52809,58056
+4,4,"Earned $25,000-$34,999",ME,19.1%,17.7%,52809,58056
+5,5,"Earned $35,000-$49,999",ME,20.2%,23.8%,52809,58056
+6,6,"Earned $50,000-$74,999",ME,20.7%,24.7%,52809,58056
+7,7,"Earned $75,000 or more",ME,25.4%,20.3%,52809,58056
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",MD,"456,481","1,876,988",84256,87152
+1,1,"Earned $1-$9,999, or incurred a loss",MD,2.0%,1.4%,84256,87152
+2,2,"Earned $10,000-$14,999",MD,2.0%,1.5%,84256,87152
+3,3,"Earned $15,000-$24,999",MD,10.4%,6.1%,84256,87152
+4,4,"Earned $25,000-$34,999",MD,13.9%,10.7%,84256,87152
+5,5,"Earned $35,000-$49,999",MD,17.9%,16.6%,84256,87152
+6,6,"Earned $50,000-$74,999",MD,20.9%,24.4%,84256,87152
+7,7,"Earned $75,000 or more",MD,33.0%,39.3%,84256,87152
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",MA,"551,121","2,023,016",74264,89285
+1,1,"Earned $1-$9,999, or incurred a loss",MA,1.5%,1.3%,74264,89285
+2,2,"Earned $10,000-$14,999",MA,1.6%,1.2%,74264,89285
+3,3,"Earned $15,000-$24,999",MA,8.4%,4.3%,74264,89285
+4,4,"Earned $25,000-$34,999",MA,14.3%,9.5%,74264,89285
+5,5,"Earned $35,000-$49,999",MA,18.7%,15.7%,74264,89285
+6,6,"Earned $50,000-$74,999",MA,20.7%,25.1%,74264,89285
+7,7,"Earned $75,000 or more",MA,34.7%,43.0%,74264,89285
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",MI,"294,502","2,993,099",68753,58824
+1,1,"Earned $1-$9,999, or incurred a loss",MI,1.8%,1.9%,68753,58824
+2,2,"Earned $10,000-$14,999",MI,2.9%,2.6%,68753,58824
+3,3,"Earned $15,000-$24,999",MI,13.5%,10.3%,68753,58824
+4,4,"Earned $25,000-$34,999",MI,12.7%,15.9%,68753,58824
+5,5,"Earned $35,000-$49,999",MI,14.7%,20.8%,68753,58824
+6,6,"Earned $50,000-$74,999",MI,19.4%,24.0%,68753,58824
+7,7,"Earned $75,000 or more",MI,35.0%,24.5%,68753,58824
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",MN,"223,621","1,867,000",62470,75665
+1,1,"Earned $1-$9,999, or incurred a loss",MN,1.7%,1.2%,62470,75665
+2,2,"Earned $10,000-$14,999",MN,2.6%,1.6%,62470,75665
+3,3,"Earned $15,000-$24,999",MN,9.5%,5.9%,62470,75665
+4,4,"Earned $25,000-$34,999",MN,18.5%,11.6%,62470,75665
+5,5,"Earned $35,000-$49,999",MN,23.8%,21.0%,62470,75665
+6,6,"Earned $50,000-$74,999",MN,18.3%,27.4%,62470,75665
+7,7,"Earned $75,000 or more",MN,25.6%,31.3%,62470,75665
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",MS,"29,593","894,332",47899,45018
+1,1,"Earned $1-$9,999, or incurred a loss",MS,2.3%,2.3%,47899,45018
+2,2,"Earned $10,000-$14,999",MS,6.3%,4.6%,47899,45018
+3,3,"Earned $15,000-$24,999",MS,22.0%,16.9%,47899,45018
+4,4,"Earned $25,000-$34,999",MS,22.1%,19.3%,47899,45018
+5,5,"Earned $35,000-$49,999",MS,18.1%,21.8%,47899,45018
+6,6,"Earned $50,000-$74,999",MS,13.5%,19.7%,47899,45018
+7,7,"Earned $75,000 or more",MS,15.6%,15.4%,47899,45018
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",MO,"119,696","2,051,579",59804,57268
+1,1,"Earned $1-$9,999, or incurred a loss",MO,1.3%,1.9%,59804,57268
+2,2,"Earned $10,000-$14,999",MO,2.4%,2.8%,59804,57268
+3,3,"Earned $15,000-$24,999",MO,14.2%,11.8%,59804,57268
+4,4,"Earned $25,000-$34,999",MO,18.6%,16.8%,59804,57268
+5,5,"Earned $35,000-$49,999",MO,18.2%,22.0%,59804,57268
+6,6,"Earned $50,000-$74,999",MO,19.2%,23.6%,59804,57268
+7,7,"Earned $75,000 or more",MO,26.1%,21.2%,59804,57268
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",MT,"7,345","338,861",53475,55007
+1,1,"Earned $1-$9,999, or incurred a loss",MT,3.4%,2.5%,53475,55007
+2,2,"Earned $10,000-$14,999",MT,6.2%,3.6%,53475,55007
+3,3,"Earned $15,000-$24,999",MT,12.4%,13.3%,53475,55007
+4,4,"Earned $25,000-$34,999",MT,17.2%,18.1%,53475,55007
+5,5,"Earned $35,000-$49,999",MT,20.2%,21.4%,53475,55007
+6,6,"Earned $50,000-$74,999",MT,20.3%,21.7%,53475,55007
+7,7,"Earned $75,000 or more",MT,20.1%,19.3%,53475,55007
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",NE,"71,812","678,168",49078,64765
+1,1,"Earned $1-$9,999, or incurred a loss",NE,2.1%,1.8%,49078,64765
+2,2,"Earned $10,000-$14,999",NE,2.1%,2.6%,49078,64765
+3,3,"Earned $15,000-$24,999",NE,15.5%,9.1%,49078,64765
+4,4,"Earned $25,000-$34,999",NE,22.7%,15.3%,49078,64765
+5,5,"Earned $35,000-$49,999",NE,29.5%,23.0%,49078,64765
+6,6,"Earned $50,000-$74,999",NE,16.3%,25.9%,49078,64765
+7,7,"Earned $75,000 or more",NE,11.7%,22.3%,49078,64765
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",NV,"296,697","802,564",58462,64965
+1,1,"Earned $1-$9,999, or incurred a loss",NV,1.4%,1.8%,58462,64965
+2,2,"Earned $10,000-$14,999",NV,3.6%,2.6%,58462,64965
+3,3,"Earned $15,000-$24,999",NV,17.3%,9.6%,58462,64965
+4,4,"Earned $25,000-$34,999",NV,22.7%,16.9%,58462,64965
+5,5,"Earned $35,000-$49,999",NV,25.2%,22.1%,58462,64965
+6,6,"Earned $50,000-$74,999",NV,16.8%,22.4%,58462,64965
+7,7,"Earned $75,000 or more",NV,12.9%,24.6%,58462,64965
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",NH,"37,802","483,372",76774,78048
+1,1,"Earned $1-$9,999, or incurred a loss",NH,2.6%,1.3%,76774,78048
+2,2,"Earned $10,000-$14,999",NH,2.0%,1.6%,76774,78048
+3,3,"Earned $15,000-$24,999",NH,7.7%,6.3%,76774,78048
+4,4,"Earned $25,000-$34,999",NH,15.4%,13.2%,76774,78048
+5,5,"Earned $35,000-$49,999",NH,19.0%,20.2%,76774,78048
+6,6,"Earned $50,000-$74,999",NH,20.9%,25.5%,76774,78048
+7,7,"Earned $75,000 or more",NH,32.4%,32.0%,76774,78048
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",NJ,"1,043,039","2,275,631",81701,87178
+1,1,"Earned $1-$9,999, or incurred a loss",NJ,1.5%,1.3%,81701,87178
+2,2,"Earned $10,000-$14,999",NJ,2.9%,1.8%,81701,87178
+3,3,"Earned $15,000-$24,999",NJ,11.6%,5.9%,81701,87178
+4,4,"Earned $25,000-$34,999",NJ,14.3%,10.6%,81701,87178
+5,5,"Earned $35,000-$49,999",NJ,15.9%,15.5%,81701,87178
+6,6,"Earned $50,000-$74,999",NJ,19.3%,23.7%,81701,87178
+7,7,"Earned $75,000 or more",NJ,34.6%,41.2%,81701,87178
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",NM,"84,102","576,429",38877,53667
+1,1,"Earned $1-$9,999, or incurred a loss",NM,2.7%,2.8%,38877,53667
+2,2,"Earned $10,000-$14,999",NM,6.6%,3.8%,38877,53667
+3,3,"Earned $15,000-$24,999",NM,20.9%,14.4%,38877,53667
+4,4,"Earned $25,000-$34,999",NM,20.0%,17.3%,38877,53667
+5,5,"Earned $35,000-$49,999",NM,14.9%,19.9%,38877,53667
+6,6,"Earned $50,000-$74,999",NM,17.0%,21.0%,38877,53667
+7,7,"Earned $75,000 or more",NM,17.9%,20.8%,38877,53667
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",NY,"1,962,971","5,000,688",66462,74640
+1,1,"Earned $1-$9,999, or incurred a loss",NY,1.6%,1.4%,66462,74640
+2,2,"Earned $10,000-$14,999",NY,2.4%,1.7%,66462,74640
+3,3,"Earned $15,000-$24,999",NY,11.1%,6.8%,66462,74640
+4,4,"Earned $25,000-$34,999",NY,17.1%,11.4%,66462,74640
+5,5,"Earned $35,000-$49,999",NY,18.4%,17.7%,66462,74640
+6,6,"Earned $50,000-$74,999",NY,20.2%,23.8%,66462,74640
+7,7,"Earned $75,000 or more",NY,29.3%,37.2%,66462,74640
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",NC,"424,736","3,223,167",55235,57509
+1,1,"Earned $1-$9,999, or incurred a loss",NC,1.9%,1.8%,55235,57509
+2,2,"Earned $10,000-$14,999",NC,3.9%,3.0%,55235,57509
+3,3,"Earned $15,000-$24,999",NC,19.0%,12.3%,55235,57509
+4,4,"Earned $25,000-$34,999",NC,19.3%,16.3%,55235,57509
+5,5,"Earned $35,000-$49,999",NC,20.0%,22.8%,55235,57509
+6,6,"Earned $50,000-$74,999",NC,13.2%,21.9%,55235,57509
+7,7,"Earned $75,000 or more",NC,22.5%,21.9%,55235,57509
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",ND,"13,414","277,549",50782,65889
+1,1,"Earned $1-$9,999, or incurred a loss",ND,1.9%,1.9%,50782,65889
+2,2,"Earned $10,000-$14,999",ND,3.0%,2.1%,50782,65889
+3,3,"Earned $15,000-$24,999",ND,10.9%,8.1%,50782,65889
+4,4,"Earned $25,000-$34,999",ND,21.6%,15.1%,50782,65889
+5,5,"Earned $35,000-$49,999",ND,23.5%,23.5%,50782,65889
+6,6,"Earned $50,000-$74,999",ND,19.6%,25.5%,50782,65889
+7,7,"Earned $75,000 or more",ND,19.5%,23.8%,50782,65889
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",OH,"235,702","3,824,380",57562,58711
+1,1,"Earned $1-$9,999, or incurred a loss",OH,1.6%,1.6%,57562,58711
+2,2,"Earned $10,000-$14,999",OH,2.5%,2.4%,57562,58711
+3,3,"Earned $15,000-$24,999",OH,13.7%,10.5%,57562,58711
+4,4,"Earned $25,000-$34,999",OH,18.3%,16.0%,57562,58711
+5,5,"Earned $35,000-$49,999",OH,17.7%,21.6%,57562,58711
+6,6,"Earned $50,000-$74,999",OH,18.0%,24.7%,57562,58711
+7,7,"Earned $75,000 or more",OH,28.2%,23.3%,57562,58711
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",OK,"119,340","1,246,305",47263,55158
+1,1,"Earned $1-$9,999, or incurred a loss",OK,2.7%,2.2%,47263,55158
+2,2,"Earned $10,000-$14,999",OK,4.4%,3.4%,47263,55158
+3,3,"Earned $15,000-$24,999",OK,21.2%,13.0%,47263,55158
+4,4,"Earned $25,000-$34,999",OK,19.7%,17.2%,47263,55158
+5,5,"Earned $35,000-$49,999",OK,22.6%,22.2%,47263,55158
+6,6,"Earned $50,000-$74,999",OK,16.9%,22.0%,47263,55158
+7,7,"Earned $75,000 or more",OK,12.6%,20.1%,47263,55158
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",OR,"190,115","1,194,311",65159,67261
+1,1,"Earned $1-$9,999, or incurred a loss",OR,1.6%,1.7%,65159,67261
+2,2,"Earned $10,000-$14,999",OR,2.7%,1.8%,65159,67261
+3,3,"Earned $15,000-$24,999",OR,13.4%,8.6%,65159,67261
+4,4,"Earned $25,000-$34,999",OR,19.7%,14.1%,65159,67261
+5,5,"Earned $35,000-$49,999",OR,20.9%,21.0%,65159,67261
+6,6,"Earned $50,000-$74,999",OR,15.4%,23.6%,65159,67261
+7,7,"Earned $75,000 or more",OR,26.2%,29.2%,65159,67261
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",PA,"412,432","4,143,945",62086,63588
+1,1,"Earned $1-$9,999, or incurred a loss",PA,1.7%,1.6%,62086,63588
+2,2,"Earned $10,000-$14,999",PA,2.9%,2.4%,62086,63588
+3,3,"Earned $15,000-$24,999",PA,13.9%,8.7%,62086,63588
+4,4,"Earned $25,000-$34,999",PA,16.4%,14.8%,62086,63588
+5,5,"Earned $35,000-$49,999",PA,17.9%,20.8%,62086,63588
+6,6,"Earned $50,000-$74,999",PA,17.8%,25.0%,62086,63588
+7,7,"Earned $75,000 or more",PA,29.4%,26.7%,62086,63588
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",RI,"68,844","320,208",58450,72867
+1,1,"Earned $1-$9,999, or incurred a loss",RI,0.9%,1.9%,58450,72867
+2,2,"Earned $10,000-$14,999",RI,4.4%,1.5%,58450,72867
+3,3,"Earned $15,000-$24,999",RI,12.0%,6.1%,58450,72867
+4,4,"Earned $25,000-$34,999",RI,17.1%,12.0%,58450,72867
+5,5,"Earned $35,000-$49,999",RI,25.6%,20.0%,58450,72867
+6,6,"Earned $50,000-$74,999",RI,20.0%,27.6%,58450,72867
+7,7,"Earned $75,000 or more",RI,19.9%,30.8%,58450,72867
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",SC,"133,178","1,642,425",58693,56094
+1,1,"Earned $1-$9,999, or incurred a loss",SC,1.6%,1.9%,58693,56094
+2,2,"Earned $10,000-$14,999",SC,4.6%,3.4%,58693,56094
+3,3,"Earned $15,000-$24,999",SC,19.7%,13.4%,58693,56094
+4,4,"Earned $25,000-$34,999",SC,17.9%,17.0%,58693,56094
+5,5,"Earned $35,000-$49,999",SC,19.5%,22.1%,58693,56094
+6,6,"Earned $50,000-$74,999",SC,16.1%,21.9%,58693,56094
+7,7,"Earned $75,000 or more",SC,20.5%,20.2%,58693,56094
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",SD,"14,286","307,622",49044,58841
+1,1,"Earned $1-$9,999, or incurred a loss",SD,1.6%,2.1%,49044,58841
+2,2,"Earned $10,000-$14,999",SD,1.6%,2.8%,49044,58841
+3,3,"Earned $15,000-$24,999",SD,18.8%,10.7%,49044,58841
+4,4,"Earned $25,000-$34,999",SD,26.7%,19.1%,49044,58841
+5,5,"Earned $35,000-$49,999",SD,28.5%,25.7%,49044,58841
+6,6,"Earned $50,000-$74,999",SD,15.4%,23.1%,49044,58841
+7,7,"Earned $75,000 or more",SD,7.5%,16.5%,49044,58841
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",TN,"177,093","2,218,519",54554,56126
+1,1,"Earned $1-$9,999, or incurred a loss",TN,2.0%,1.7%,54554,56126
+2,2,"Earned $10,000-$14,999",TN,4.0%,3.0%,54554,56126
+3,3,"Earned $15,000-$24,999",TN,19.5%,12.5%,54554,56126
+4,4,"Earned $25,000-$34,999",TN,22.0%,18.1%,54554,56126
+5,5,"Earned $35,000-$49,999",TN,19.1%,22.5%,54554,56126
+6,6,"Earned $50,000-$74,999",TN,13.6%,22.1%,54554,56126
+7,7,"Earned $75,000 or more",TN,19.9%,20.1%,54554,56126
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",TX,"2,364,405","8,160,725",54181,66818
+1,1,"Earned $1-$9,999, or incurred a loss",TX,2.1%,2.0%,54181,66818
+2,2,"Earned $10,000-$14,999",TX,5.1%,3.3%,54181,66818
+3,3,"Earned $15,000-$24,999",TX,19.5%,11.9%,54181,66818
+4,4,"Earned $25,000-$34,999",TX,18.4%,14.7%,54181,66818
+5,5,"Earned $35,000-$49,999",TX,18.0%,18.4%,54181,66818
+6,6,"Earned $50,000-$74,999",TX,16.7%,23.2%,54181,66818
+7,7,"Earned $75,000 or more",TX,20.3%,26.5%,54181,66818
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",UT,"138,956","945,454",63799,77228
+1,1,"Earned $1-$9,999, or incurred a loss",UT,1.7%,1.5%,63799,77228
+2,2,"Earned $10,000-$14,999",UT,4.1%,2.4%,63799,77228
+3,3,"Earned $15,000-$24,999",UT,14.4%,8.3%,63799,77228
+4,4,"Earned $25,000-$34,999",UT,23.6%,15.4%,63799,77228
+5,5,"Earned $35,000-$49,999",UT,25.3%,20.2%,63799,77228
+6,6,"Earned $50,000-$74,999",UT,16.8%,24.4%,63799,77228
+7,7,"Earned $75,000 or more",UT,14.0%,27.7%,63799,77228
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",VT,"11,090","209,619",56782,62242
+1,1,"Earned $1-$9,999, or incurred a loss",VT,1.0%,1.7%,56782,62242
+2,2,"Earned $10,000-$14,999",VT,1.1%,2.2%,56782,62242
+3,3,"Earned $15,000-$24,999",VT,11.6%,8.8%,56782,62242
+4,4,"Earned $25,000-$34,999",VT,23.4%,16.6%,56782,62242
+5,5,"Earned $35,000-$49,999",VT,21.0%,23.1%,56782,62242
+6,6,"Earned $50,000-$74,999",VT,18.2%,25.9%,56782,62242
+7,7,"Earned $75,000 or more",VT,23.6%,21.7%,56782,62242
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",VA,"544,181","2,704,019",81382,75775
+1,1,"Earned $1-$9,999, or incurred a loss",VA,1.4%,1.7%,81382,75775
+2,2,"Earned $10,000-$14,999",VA,2.5%,2.3%,81382,75775
+3,3,"Earned $15,000-$24,999",VA,12.7%,9.4%,81382,75775
+4,4,"Earned $25,000-$34,999",VA,15.9%,12.8%,81382,75775
+5,5,"Earned $35,000-$49,999",VA,16.6%,18.2%,81382,75775
+6,6,"Earned $50,000-$74,999",VA,18.0%,22.3%,81382,75775
+7,7,"Earned $75,000 or more",VA,33.0%,33.3%,81382,75775
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",WA,"528,324","2,163,062",79410,78593
+1,1,"Earned $1-$9,999, or incurred a loss",WA,1.3%,1.1%,79410,78593
+2,2,"Earned $10,000-$14,999",WA,2.1%,1.4%,79410,78593
+3,3,"Earned $15,000-$24,999",WA,8.0%,6.9%,79410,78593
+4,4,"Earned $25,000-$34,999",WA,16.3%,11.9%,79410,78593
+5,5,"Earned $35,000-$49,999",WA,19.0%,18.3%,79410,78593
+6,6,"Earned $50,000-$74,999",WA,17.6%,24.4%,79410,78593
+7,7,"Earned $75,000 or more",WA,35.8%,36.1%,79410,78593
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",WV,"11,186","522,916",53858,46580
+1,1,"Earned $1-$9,999, or incurred a loss",WV,1.5%,1.7%,53858,46580
+2,2,"Earned $10,000-$14,999",WV,3.0%,3.6%,53858,46580
+3,3,"Earned $15,000-$24,999",WV,15.2%,15.6%,53858,46580
+4,4,"Earned $25,000-$34,999",WV,16.5%,19.0%,53858,46580
+5,5,"Earned $35,000-$49,999",WV,16.9%,20.5%,53858,46580
+6,6,"Earned $50,000-$74,999",WV,20.7%,20.7%,53858,46580
+7,7,"Earned $75,000 or more",WV,26.2%,18.8%,53858,46580
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",WI,"138,028","2,010,794",58695,64598
+1,1,"Earned $1-$9,999, or incurred a loss",WI,2.2%,1.6%,58695,64598
+2,2,"Earned $10,000-$14,999",WI,2.3%,2.2%,58695,64598
+3,3,"Earned $15,000-$24,999",WI,14.1%,8.3%,58695,64598
+4,4,"Earned $25,000-$34,999",WI,19.7%,14.7%,58695,64598
+5,5,"Earned $35,000-$49,999",WI,24.7%,23.2%,58695,64598
+6,6,"Earned $50,000-$74,999",WI,18.6%,27.1%,58695,64598
+7,7,"Earned $75,000 or more",WI,18.4%,22.8%,58695,64598
+0,0,"Full-Time, Year-Round Workers (age 16 and older). Earnings in the Current Year Inflation-Adjusted Dollars (%)",WY,"8,448","200,157",54533,64386
+1,1,"Earned $1-$9,999, or incurred a loss",WY,2.0%,2.2%,54533,64386
+2,2,"Earned $10,000-$14,999",WY,4.6%,3.4%,54533,64386
+3,3,"Earned $15,000-$24,999",WY,19.0%,10.3%,54533,64386
+4,4,"Earned $25,000-$34,999",WY,20.0%,15.6%,54533,64386
+5,5,"Earned $35,000-$49,999",WY,22.4%,19.5%,54533,64386
+6,6,"Earned $50,000-$74,999",WY,13.7%,24.0%,54533,64386
+7,7,"Earned $75,000 or more",WY,18.4%,25.0%,54533,64386
