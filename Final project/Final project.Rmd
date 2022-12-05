@@ -20,6 +20,8 @@ First, we pulled OECD data [here](https://stats.oecd.org/Index.aspx?DataSetCode=
 library(tidyverse)
 library(DescTools)
 library(knitr)
+ library(usmap)
+library(gridExtra)
 
 temp <- tempfile()
 oecd <- download.file("https://github.com/beninbar/DATA-607/blob/main/Final%20project/data/OECD.zip?raw=TRUE", temp, mode = "wb")
@@ -72,3 +74,156 @@ DunnettTest(x=aggregated$Totals, g=aggregated$Country, control="United States")
 <div style="margin-top:50px;">
 #### Indeed, the only other country that shows less significant of a difference in migration (but notably, is still significant), is Germany!
 <div style="margin-top:50px;">
+  
+#### US State Comparison
+  
+  #### Load Data
+```{r load_data}
+link <- 'https://raw.githubusercontent.com/beninbar/DATA-607/main/Final%20project/data/state_immigration_stats.csv'
+state_data <- read_csv(link,show_col_types=FALSE)
+```
+
+#### How do wages for US-born vs foreign born differ based on available data
+
+```{r}
+median_wages <- state_data |>
+    group_by(state) |>
+    summarise(foreign_born_median_wages = mean(foreign_median_wages),
+              us_born_median_wages = mean(us_median_wages),
+              diff_wages = us_born_median_wages-foreign_born_median_wages)
+
+ggplot(data=median_wages,mapping=aes(x=us_born_median_wages,y=foreign_born_median_wages))+
+    geom_point() +
+    geom_jitter() +
+    geom_text(aes(label=state),color='black',size=4,vjust=1) +
+    geom_smooth(method='lm') +
+    labs(title= '2019 Median Annual Wages by Birth',subtitle = 'Source: Migration Policy Institute via American Community Survey')
+
+cor(median_wages$us_born_median_wages,median_wages$foreign_born_median_wages)
+
+
+t.test(median_wages$diff_wages,conf.level = .95)
+```
+
+From reviewing the scatterplot of median pages by birth, it is clear there is a very strong linear pattern between the two suggesting that wages are not that different in gross terms between US and foreign born residents. The correlation between the two variables is very high which might indicate and would lead us to hypothesize that state employment factors are a much stronger predictor of employment for all of its residents. After running a single T-test it is also clear that there is a statistically significant difference between the two median wages with a 95% confidence interval for the true population estimates at (3743.393,7318.019)
+
+#### Top/Bottom 5 Wage Differential
+
+```{r}
+median_wages |>
+    arrange(-diff_wages) |>
+    head(5)
+
+median_wages |>
+    arrange(-diff_wages) |>
+    tail(5)
+```
+While it is interesting to see this information in a list perhaps showing the full map visualization will be a better holistic view of the whole country's statistics.
+
+#### US and Foreign Born Maps
+
+
+
+#### Differential Map
+
+```{r}
+plot_usmap(
+    data = median_wages, values = "diff_wages", color = "white"
+  ) + 
+  scale_fill_continuous(
+    low = "white", high = "blue", name = "Median Wages Difference (2019)", label = scales::comma
+  ) + 
+  labs(title = "Median Wage Comparison", subtitle = "US - Foreign Wages.") +
+  theme(legend.position = "right")
+```
+
+#### Separated Median Wage Map
+
+```{r}
+us_map <- plot_usmap(
+    data = median_wages, values = "us_born_median_wages", color = "white"
+  ) + 
+  scale_fill_continuous(
+    low = "white", high = "blue", name = "Median US Born Wages (2019)", label = scales::comma
+  ) + 
+  labs(title = "Median Wages (US Born)") +
+  theme(legend.position = "right")
+foreign_map <- plot_usmap(
+    data = median_wages, values = "foreign_born_median_wages", color = "white"
+  ) + 
+  scale_fill_continuous(
+    low = "white", high = "blue", name = "Median Foreign Born Wages (2019)", label = scales::comma
+  ) + 
+  labs(title = "Median Wages (Foreign Born)") +
+  theme(legend.position = "right")
+
+grid.arrange(us_map,foreign_map,ncol=2)
+```
+
+#### Data Cleanup
+Prepare scraped data for better formattings and correct data types
+```{r}
+state_bin <- state_data |> filter(order!=0) |>
+    mutate(earning_bin = str_trim(str_replace_all(header,c('Earned'='', ', or incurred a loss'=''))),
+           foreign_born_perc = as.numeric(str_replace(foreign_born,'%',''))/100,
+           us_born_perc = as.numeric(str_replace(us_born,'%',''))/100)
+```
+
+
+#### Foreign Workers in Highest Wage Band
+
+```{r}
+state_bin |> filter(earning_bin=='$75,000 or more') %>%
+    ggplot(aes(reorder(state,foreign_born_perc),foreign_born_perc,fill='blue')) +
+    theme(axis.text.x = element_text(angle=90,hjust=0.9),legend.position = 'none')+ 
+    geom_bar(stat='identity') +
+    labs(x='States',y='Foreign Born (%)', title='Percentage of Foreign Born making $75,000+')
+    
+```
+
+#### Number of states in each binned wage range
+
+```{r}
+state_bin_top <- state_bin |> 
+    group_by(state) |> 
+    mutate(top_rank_foreign = rank(-foreign_born_perc,ties.method = 'last'),
+           top_rank_us=rank(-us_born_perc)) |> 
+    pivot_longer(cols=c('top_rank_foreign','top_rank_us'),names_to='measure_name',values_to='measure_values') |>
+    filter(measure_values==1)    
+
+
+state_bin |> 
+    group_by(state) |> 
+    mutate(top_rank_foreign = rank(-foreign_born_perc),
+           top_rank_us=rank(-us_born_perc)) |> 
+    pivot_longer(cols=c('top_rank_foreign','top_rank_us'),names_to='measure_name',values_to='measure_values') |>
+    filter(measure_values==1) %>%
+    
+    group_by(earning_bin,measure_name) |>
+    summarise(count = n()) %>%
+    ggplot(aes(reorder(earning_bin,count),count,fill=measure_name)) +
+    geom_bar(stat='identity',position='dodge') +
+    theme(axis.text.x = element_text(angle=90,hjust=0.9))+
+    labs(x='Earnings Range',y='Number of States', title='Highest Frequency Wage Bins')
+```
+
+
+#### Where is the disparity occuring?
+
+```{r}
+
+
+bin_diff <- state_bin_top  %>%
+    group_by(state) |> 
+    select(state,measure_name,order) |>
+    pivot_wider(names_from=measure_name,values_from=order) |>
+    mutate(top_rank = top_rank_us - top_rank_foreign)
+    
+plot_usmap( data = bin_diff, values = "top_rank", color = "white" ) + 
+  scale_fill_continuous(
+    low = "white", high = "blue", name = "Difference in most frequent wage range", label = scales::comma
+  ) + 
+  labs(title = "Bin Difference (US - Foreign)",subtitle='Bins are scaled 1 - 7 (positive values:US>Foreign; negative: Foreign>US)') +
+  theme(legend.position = "right")
+
+```
