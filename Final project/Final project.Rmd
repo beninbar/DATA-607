@@ -192,7 +192,7 @@ state_bin_top <- state_bin |>
     filter(measure_values==1)    
 
 
-state_bin |> 
+most_common_bins <- state_bin |> 
     group_by(state) |> 
     mutate(top_rank_foreign = rank(-foreign_born_perc),
            top_rank_us=rank(-us_born_perc)) |> 
@@ -204,7 +204,9 @@ state_bin |>
     ggplot(aes(reorder(earning_bin,count),count,fill=measure_name)) +
     geom_bar(stat='identity',position='dodge') +
     theme(axis.text.x = element_text(angle=90,hjust=0.9))+
-    labs(x='Earnings Range',y='Number of States', title='Highest Frequency Wage Bins')
+    labs(x='Earnings Bin',y='Number of States', title='Highest Frequency Wage Bins')
+ 
+ most_common_bins + scale_fill_discrete(name="Category",labels=c('Most Common Foreign Born','Most Common US Born'))
 ```
 
 
@@ -221,9 +223,9 @@ bin_diff <- state_bin_top  %>%
     
 plot_usmap( data = bin_diff, values = "top_rank", color = "white" ) + 
   scale_fill_continuous(
-    low = "white", high = "blue", name = "Difference in most frequent wage range", label = scales::comma
+    low = "white", high = "blue", name = "Differential between US born versus foreign born wages", label = scales::comma
   ) + 
-  labs(title = "Bin Difference (US - Foreign)",subtitle='Bins are scaled 1 - 7 (positive values:US>Foreign; negative: Foreign>US)') +
+  labs(title = "Bin Difference (US - Foreign)",subtitle='Differential Strength (positive values:US>Foreign; negative: Foreign>US)') +
   theme(legend.position = "right")
 
 ```
