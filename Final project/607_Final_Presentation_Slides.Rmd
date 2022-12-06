@@ -5,6 +5,8 @@ presenters: "Ben Inbar & Josh Forster"
 output:
   ioslides_presentation:
     widescreen: yes
+    smaller: true
+    transition: slower
     df_print: kable
 ---
 
@@ -12,6 +14,11 @@ output:
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, error=FALSE, comment=NA)
 ```
 
+<style>
+slides > slide.title-slide h1 {
+  margin-right: 20%;
+}
+</style>
 
 ```{r}
 library(tidyverse)
@@ -22,8 +29,8 @@ library(DescTools)
 library(ggrepel)
 ```
 
-## {.smaller}
-<div style="margin-top:225px;">
+
+## {.flexbox .vcenter}
 In this project, we aimed to look at immigration data from various sources to determine how the US as a country compares to other countries for immigration. Is it in really the most sought-after country?
 
 We then looked at individual states for migrant employment.
@@ -55,16 +62,16 @@ ggplot(data=aggregated, aes(x=Year, y=Totals, color=Country)) +
   scale_x_continuous(expand=c(.01, 0)) + 
   geom_label_repel(data = subset(for_label, Country==c("Germany", "United States")), aes(label=Country), nudge_x=2, nudge_y=400000,     segment.color=NA)
 ```
-<div style="font-size: small; color: black; text-align: left; position: relative;">As you can see, the United States is not the only country with high immigration. Germany peaks in 2015, coinciding with the migrant crisis of that year.</div>
+<div style="font-size: medium; color: black; text-align: left; z-index: 1; margin-top: -30%; margin-left: 80%;">As you can see, the United States is not the only country with high immigration. Germany peaks in 2015, coinciding with the migrant crisis of that year.</div>
 
-## But we wanted to confirm this statistically. Our target was the US.
-We ran an F-test with Dunnett’s post-hoc test to compare the United States to all other OECD countries. We used Dunnett’s posthoc test since in this case we have many comparisons (35 countries compared to each other), but we’re only interested in finding out if one of them (the United States) is significantly different.
+## But we wanted to confirm this statistically. ANOVA across all countries.
 ```{r}
 anova <- aov(Totals ~ Country, aggregated)
 summary(anova)
 ```
 
-## {.smaller}
+## Our target was the US. {.smaller}
+We ran an F-test with Dunnett’s post-hoc test to compare the United States to all other OECD countries. We used Dunnett’s posthoc test since in this case we have many comparisons (35 countries compared to each other), but we’re only interested in finding out if one of them (the United States) is significantly different.
 ```{r}
 set.seed(42)
 DunnettTest(x=aggregated$Totals, g=aggregated$Country, control="United States")
@@ -95,26 +102,31 @@ ggplot(data=median_wages,mapping=aes(x=us_born_median_wages,y=foreign_born_media
 
 ## Correlation and T-Test
 
-```{r}
-cor(median_wages$us_born_median_wages,median_wages$foreign_born_median_wages)
+```{r echo=FALSE, message=FALSE}
+cat(paste0("Correlation coefficient of median wages between US and foreign born wages: ", "\n", cor(median_wages$us_born_median_wages,median_wages$foreign_born_median_wages)))
+
 t.test(median_wages$diff_wages,conf.level = .95)
 ```
 
+## US vs Foreign Born Median Wages
 
-## Map of US - Foreign Wage Difference
+![](https://github.com/beninbar/DATA-607/raw/main/Final%20project/side_by_side_map.png){width=100%}
 
-```{r}
+## US - Foreign Wage Difference
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 plot_usmap(
     data = median_wages, values = "diff_wages", color = "white"
   ) + 
   scale_fill_continuous(
     low = "white", high = "blue", name = "Median Wages Difference (2019)", label = scales::comma
   ) + 
-  labs(title = "Median Wage Comparison", subtitle = "US - Foreign Wages.") +
+  labs(title = "Median Wage Comparison") #, subtitle = "US - Foreign Wages.") +
   theme(legend.position = "right")
 ```
 
-## Top/Bottom 5 Wage Differential {.smaller}
+
+## Top/Bottom 5 Wage Difference {.smaller}
 
 ```{r}
 median_wages |>
@@ -125,13 +137,7 @@ median_wages |>
     tail(5)
 ```
 
-
-## Differential Map: US vs Foreign Born Median Wages
-
-![](https://github.com/beninbar/DATA-607/raw/main/Final%20project/side_by_side_map.png){width=100%}
-
-
-## Foreign Workers in Highest Wage Band
+## Foreign Workers in Highest Wage Bin ($75,000K+)
 
 ```{r}
 state_bin <- state_data |> filter(order!=0) |>
@@ -142,11 +148,11 @@ state_bin |> filter(earning_bin=='$75,000 or more') %>%
     ggplot(aes(reorder(state,foreign_born_perc),foreign_born_perc,fill='blue')) +
     theme(axis.text.x = element_text(angle=90,hjust=0.9),legend.position = 'none') + 
     geom_bar(stat='identity') +
-    labs(x='States',y='Foreign Born (%)', title='Percentage of Foreign Born making $75,000+')
+    labs(x='States',y='Foreign Born (%)') #, title='Percentage of Foreign Born making $75,000+')
     
 ```
 
-## Number of states in each binned wage range
+## Most common wage bin per state
 
 ```{r}
 state_bin_top <- state_bin |> 
@@ -166,13 +172,14 @@ most_common_bins <- state_bin |>
     summarise(count = n()) %>%
     ggplot(aes(earning_bin,count,fill=measure_name)) +
     geom_bar(stat='identity',position='dodge') +
-    theme(axis.text.x = element_text(angle=90,hjust=0.9))+
-    labs(x='Earnings Bin',y='State Count', title='Highest Frequency Wage Bins')
-most_common_bins + scale_fill_discrete(name="Category",labels=c('Most Common Foreign Born','Most Common US Born'))
+    theme(axis.text.x = element_text(angle=45,hjust=0.9))+
+    labs(x='Earnings Bin',y='State Count') #, title='Highest Frequency Wage Bins')
+most_common_bins + scale_fill_discrete(name="Category",labels=c('Foreign Born','US Born'))
 ```
 
 
-## Where is the disparity occuring?
+## Disparity of most common wage bins
+Bin difference (US - Foreign)
 
 ```{r}
 bin_diff <- state_bin_top  %>%
@@ -185,6 +192,12 @@ plot_usmap( data = bin_diff, values = "top_rank", color = "white" ) +
   scale_fill_continuous(
     low = "white", high = "blue", name = "Differential between US born versus foreign born wages", label = scales::comma
   ) + 
-  labs(title = "Bin Difference (US - Foreign)",subtitle='Differential Strength (positive values:US>Foreign; negative: Foreign>US)') +
+  labs(title = "Differential Strength (positive value: US > Foreign; negative value: Foreign > US)") +
   theme(legend.position = "right")
 ```
+
+## Challenges and future directions
+* ANOVA and determining which post-hoc test
+* ioslides: deceptively finicky
+* Scraping/how to map across US states??
+* In future: breakdown by Visa status?
