@@ -5,11 +5,11 @@ presenters: "Ben Inbar & Josh Forster"
 output:
   ioslides_presentation:
     widescreen: yes
-
+    df_print: kable
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, error =FALSE)
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, error=FALSE, comment=NA)
 ```
 
 
@@ -18,15 +18,65 @@ library(tidyverse)
 library(usmap)
 library(gridExtra)
 library(knitr)
+library(DescTools)
+library(ggrepel)
 ```
 
+## {.smaller}
+<div style="margin-top:225px;">
+In this project, we aimed to look at immigration data from various sources to determine how the US as a country compares to other countries for immigration. Is it in really the most sought-after country?
+
+We then looked at individual states for migrant employment.
+
+## First, we downloaded a .csv from OECD.org, which compiles data for OECD member countries. {.smaller}
+
+```{r}
+temp <- tempfile()
+oecd <- download.file("https://github.com/beninbar/DATA-607/blob/main/Final%20project/data/OECD.zip?raw=TRUE", temp, mode = "wb")
+oecd <- unzip(temp, "OECD.csv")
+oecd <- read.csv(oecd)
+
+head(oecd)
+```
+
+## We cleaned it to get total inflows for each country and graphed this. {.smaller}
+```{r}
+oecd <- oecd |> filter(Variable=="Inflows of foreign population by nationality") |> select(Country, Year, Value)
+
+aggregated <- oecd |> group_by(Country, Year) |> summarize(Totals = sum(Value))
+
+for_label <- aggregated |> filter(Year=="2015")
+
+ggplot(data=aggregated, aes(x=Year, y=Totals, color=Country)) +
+  geom_line() +
+  ggtitle("Inflows of foreign population per country, 2000-2021") +
+  theme(axis.title.y=element_blank(), legend.position="none", panel.grid.minor = element_blank()) +
+  scale_y_continuous(labels = scales::comma, expand=c(0, 100000)) +
+  scale_x_continuous(expand=c(.01, 0)) + 
+  geom_label_repel(data = subset(for_label, Country==c("Germany", "United States")), aes(label=Country), nudge_x=2, nudge_y=400000,     segment.color=NA)
+```
+<div style="font-size: small; color: black; text-align: left; position: relative;">As you can see, the United States is not the only country with high immigration. Germany peaks in 2015, coinciding with the migrant crisis of that year.</div>
+
+## But we wanted to confirm this statistically. Our target was the US.
+We ran an F-test with Dunnett’s post-hoc test to compare the United States to all other OECD countries. We used Dunnett’s posthoc test since in this case we have many comparisons (35 countries compared to each other), but we’re only interested in finding out if one of them (the United States) is significantly different.
+```{r}
+anova <- aov(Totals ~ Country, aggregated)
+summary(anova)
+```
+
+## {.smaller}
+```{r}
+set.seed(42)
+DunnettTest(x=aggregated$Totals, g=aggregated$Country, control="United States")
+```
+
+## How do wages for US-born vs foreign born differ based on available data
 
 ```{r load_data}
 link <- 'https://raw.githubusercontent.com/beninbar/DATA-607/main/Final%20project/data/state_immigration_stats.csv'
 state_data <- read_csv(link,show_col_types=FALSE)
 ```
 
-## How do wages for US-born vs foreign born differ based on available data
 
 ```{r}
 median_wages <- state_data |>
@@ -34,7 +84,6 @@ median_wages <- state_data |>
     summarise(foreign_born_median_wages = mean(foreign_median_wages),
               us_born_median_wages = mean(us_median_wages),
               diff_wages = us_born_median_wages-foreign_born_median_wages)
-
 ggplot(data=median_wages,mapping=aes(x=us_born_median_wages,y=foreign_born_median_wages))+
     geom_point() +
     geom_jitter() +
@@ -48,7 +97,6 @@ ggplot(data=median_wages,mapping=aes(x=us_born_median_wages,y=foreign_born_media
 
 ```{r}
 cor(median_wages$us_born_median_wages,median_wages$foreign_born_median_wages)
-
 t.test(median_wages$diff_wages,conf.level = .95)
 ```
 
@@ -66,13 +114,12 @@ plot_usmap(
   theme(legend.position = "right")
 ```
 
-## Top/Bottom 5 Wage Differential
+## Top/Bottom 5 Wage Differential {.smaller}
 
 ```{r}
 median_wages |>
     arrange(-diff_wages) |>
     head(5)
-
 median_wages |>
     arrange(-diff_wages) |>
     tail(5)
@@ -81,7 +128,7 @@ median_wages |>
 
 ## Differential Map: US vs Foreign Born Median Wages
 
-![](./side_by_side_map.png){width=100%}
+![](https://github.com/beninbar/DATA-607/raw/main/Final%20project/side_by_side_map.png){width=100%}
 
 
 ## Foreign Workers in Highest Wage Band
@@ -91,7 +138,6 @@ state_bin <- state_data |> filter(order!=0) |>
     mutate(earning_bin = str_trim(str_replace_all(header,c('Earned'='', ', or incurred a loss'=''))),
            foreign_born_perc = as.numeric(str_replace(foreign_born,'%',''))/100,
            us_born_perc = as.numeric(str_replace(us_born,'%',''))/100)
-
 state_bin |> filter(earning_bin=='$75,000 or more') %>%
     ggplot(aes(reorder(state,foreign_born_perc),foreign_born_perc,fill='blue')) +
     theme(axis.text.x = element_text(angle=90,hjust=0.9),legend.position = 'none') + 
@@ -109,7 +155,6 @@ state_bin_top <- state_bin |>
            top_rank_us=rank(-us_born_perc)) |> 
     pivot_longer(cols=c('top_rank_foreign','top_rank_us'),names_to='measure_name',values_to='measure_values') |>
     filter(measure_values==1)    
-
 most_common_bins <- state_bin |> 
     group_by(state) |> 
     mutate(top_rank_foreign = rank(-foreign_born_perc),
@@ -124,14 +169,12 @@ most_common_bins <- state_bin |>
     theme(axis.text.x = element_text(angle=90,hjust=0.9))+
     labs(x='Earnings Bin',y='State Count', title='Highest Frequency Wage Bins')
 most_common_bins + scale_fill_discrete(name="Category",labels=c('Most Common Foreign Born','Most Common US Born'))
-
 ```
 
 
 ## Where is the disparity occuring?
 
 ```{r}
-
 bin_diff <- state_bin_top  %>%
     group_by(state) |> 
     select(state,measure_name,order) |>
@@ -144,7 +187,4 @@ plot_usmap( data = bin_diff, values = "top_rank", color = "white" ) +
   ) + 
   labs(title = "Bin Difference (US - Foreign)",subtitle='Differential Strength (positive values:US>Foreign; negative: Foreign>US)') +
   theme(legend.position = "right")
-
 ```
-
-
