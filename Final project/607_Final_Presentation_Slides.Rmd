@@ -31,7 +31,7 @@ library(ggrepel)
 
 
 ## {.flexbox .vcenter}
-In this project, we aimed to look at immigration data from various sources to determine how the US as a country compares to other countries for immigration. Is it in really the most sought-after country?
+In this project, we aimed to look at immigration data from various sources to determine how the US as a country compares to other countries for immigration. Is it really the most sought-after country?
 
 We then looked at individual states for migrant employment.
 
@@ -46,7 +46,7 @@ oecd <- read.csv(oecd)
 head(oecd)
 ```
 
-## We cleaned it to get total inflows for each country and graphed this. {.smaller}
+## We cleaned it to get total inflows for each country and graphed the following. {.smaller}
 ```{r}
 oecd <- oecd |> filter(Variable=="Inflows of foreign population by nationality") |> select(Country, Year, Value)
 
