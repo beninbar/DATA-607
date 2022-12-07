@@ -64,7 +64,7 @@ ggplot(data=aggregated, aes(x=Year, y=Totals, color=Country)) +
 ```
 <div style="font-size: medium; color: black; text-align: left; z-index: 1; margin-top: -30%; margin-left: 80%;">As you can see, the United States is not the only country with high immigration. Germany peaks in 2015, coinciding with the migrant crisis of that year.</div>
 
-## But we wanted to confirm this statistically. ANOVA across all countries.
+## But we wanted to confirm this statistically using ANOVA across all countries.
 ```{r}
 anova <- aov(Totals ~ Country, aggregated)
 summary(anova)
